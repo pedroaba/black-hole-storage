@@ -1,6 +1,11 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 
 import { SignInForm } from './sign-in-form'
+
+export const metadata: Metadata = {
+  title: 'Sign In',
+}
 
 export default function Login() {
   return (
