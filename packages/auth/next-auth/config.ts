@@ -1,10 +1,10 @@
 import type { NextAuthConfig, Session } from 'next-auth'
 
-import { prismaAdapter } from './adapters/prisma'
+import { drizzleAuthAdapter } from './adapters/drizzle'
 import { credentialsProvider } from './providers/credentials'
 
 export const authConfig = {
-  adapter: prismaAdapter,
+  adapter: drizzleAuthAdapter,
   providers: [credentialsProvider],
   pages: {
     signIn: '/auth/sign-in',
@@ -42,7 +42,9 @@ export const authConfig = {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user
 
-      const isOnPublicAPIRoutes = nextUrl.pathname.startsWith('/api/auth')
+      const isOnPublicAPIRoutes =
+        nextUrl.pathname.startsWith('/api/auth') ||
+        nextUrl.pathname.startsWith('/api/trpc/register')
       const isOnAPIRoutes = nextUrl.pathname.startsWith('/api')
       const isOnPublicPages = nextUrl.pathname.startsWith('/auth')
       const isOnPublicBackgroundImage = nextUrl.pathname.startsWith(

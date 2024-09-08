@@ -1,9 +1,14 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import { LoaderCircle } from 'lucide-react'
+import { redirect, useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 import { z } from 'zod'
+import { useServerAction } from 'zsa-react'
 
+import { signUpAction } from '@/app/actions/auth/sign-up-action'
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -81,15 +86,34 @@ export const signSchema = z
     path: ['password'],
   })
 
-export type SignInSchema = z.infer<typeof signSchema>
+export type SignUpSchema = z.infer<typeof signSchema>
 
 export function SignUpForm() {
-  const form = useForm<SignInSchema>({
+  const router = useRouter()
+
+  const { execute, isPending } = useServerAction(signUpAction)
+  const form = useForm<SignUpSchema>({
     resolver: zodResolver(signSchema),
+    disabled: isPending,
   })
 
-  async function handleSignUp(data: SignInSchema) {
-    console.log(data)
+  async function handleSignUp({ email, name, password }: SignUpSchema) {
+    const [, error] = await execute({
+      email,
+      password,
+      name,
+    })
+
+    if (error) {
+      toast.error('Erro ao tentar cria usuário', {
+        description: error.message,
+      })
+
+      return
+    }
+
+    toast.success('Usuário criado com sucesso')
+    router.replace('/auth/sign-in')
   }
 
   return (
@@ -159,8 +183,12 @@ export function SignUpForm() {
         />
 
         <div className="pt-6">
-          <Button className="w-full" variant="secondary">
-            Embarcar
+          <Button className="w-full" variant="secondary" disabled={isPending}>
+            {isPending ? (
+              <LoaderCircle className="size-4 text-zinc-800 dark:text-zinc-100 animate-spin" />
+            ) : (
+              'Embarcar'
+            )}
           </Button>
         </div>
       </form>

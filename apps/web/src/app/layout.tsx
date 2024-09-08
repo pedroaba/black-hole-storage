@@ -5,8 +5,9 @@ import localFont from 'next/font/local'
 import Link from 'next/link'
 
 import { Header } from '@/components/header'
-import { ThemeProvider } from '@/components/theme-provider'
 import { Toaster } from '@/components/ui/sonner'
+
+import { Providers } from './providers'
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -32,12 +33,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} min-w-screen w-screen h-screen min-h-screen`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <Providers>
           <Header />
           {children}
 
@@ -54,7 +50,7 @@ export default function RootLayout({
           </span>
 
           <Toaster richColors position="top-center" closeButton />
-        </ThemeProvider>
+        </Providers>
       </body>
     </html>
   )

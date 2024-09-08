@@ -1,4 +1,4 @@
-import { prisma } from '@bhs/prisma'
+import { db } from '@bhs/drizzle'
 import { compare } from 'bcryptjs'
 import { CredentialsSignin } from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
@@ -21,9 +21,9 @@ export const credentialsProvider = Credentials({
 
       const { email, password } = credentials
 
-      const userOnDb = await prisma.user.findUnique({
-        where: {
-          email: email as string,
+      const userOnDb = await db.query.user.findFirst({
+        where(fields, { eq }) {
+          return eq(fields.email, email as string)
         },
       })
 
@@ -33,7 +33,7 @@ export const credentialsProvider = Credentials({
 
       const passwordMatches = await compare(
         password as string,
-        userOnDb.password,
+        userOnDb.password as string,
       )
 
       if (passwordMatches) {
