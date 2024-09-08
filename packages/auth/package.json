@@ -1,0 +1,32 @@
+{
+  "name": "@bhs/auth",
+  "version": "0.0.0",
+  "private": true,
+  "main": "index.ts",
+  "types": "index.ts",
+  "scripts": {
+
+  },
+  "dependencies": {
+    "@auth/core": "^0.34.2",
+    "@auth/prisma-adapter": "^2.4.2",
+    "@bhs/prisma": "workspace:*",
+    "@prisma/client": "^5.19.1",
+    "bcryptjs": "^2.4.3",
+    "next-auth": "beta"
+  },
+  "devDependencies": {
+    "@bhs/eslint-config": "workspace:*",
+    "@bhs/prettier": "workspace:*",
+    "@bhs/typescript-config": "workspace:*",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^20",
+    "dotenv-cli": "^7.4.2"
+  },
+  "prettier": "@bhs/prettier",
+  "eslintConfig": {
+    "extends": [
+      "@bhs/eslint-config/node"
+    ]
+  }
+}

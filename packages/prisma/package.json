@@ -1,0 +1,30 @@
+{
+  "name": "@bhs/prisma",
+  "version": "0.0.0",
+  "private": true,
+  "main": "index.ts",
+  "types": "index.ts",
+  "scripts": {
+    "dev": "pnpm env:load prisma studio",
+    "db:migrate": "pnpm env:load prisma migrate dev",
+    "env:load": "dotenv -e ../../.env --"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.19.1"
+  },
+  "devDependencies": {
+    "@bhs/eslint-config": "workspace:*",
+    "@bhs/prettier": "workspace:*",
+    "@bhs/typescript-config": "workspace:*",
+    "@types/node": "^20",
+    "dotenv-cli": "^7.4.2",
+    "prisma": "^5.17.0",
+    "tsx": "^4.16.2"
+  },
+  "prettier": "@bhs/prettier",
+  "eslintConfig": {
+    "extends": [
+      "@bhs/eslint-config/node"
+    ]
+  }
+}
