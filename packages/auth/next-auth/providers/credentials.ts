@@ -35,6 +35,7 @@ export const credentialsProvider = Credentials({
         password as string,
         userOnDb.password,
       )
+
       if (passwordMatches) {
         return userOnDb
       }

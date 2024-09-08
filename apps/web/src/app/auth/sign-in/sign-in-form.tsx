@@ -69,7 +69,13 @@ export function SignInForm() {
       toast.error('Credenciais inválidas', {
         description: 'E-mail ou senha inválidos',
       })
+
+      return
     }
+
+    toast.success('Embarque realizado', {
+      description: 'Bem-vindo à espaçonave, e vamos rumo ao infinito',
+    })
   }
 
   return (

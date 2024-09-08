@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "pnpm env:load prisma studio",
     "db:migrate": "pnpm env:load prisma migrate dev",
+    "db:seed": "pnpm env:load tsx prisma/seed.ts",
     "env:load": "dotenv -e ../../.env --"
   },
   "dependencies": {
@@ -16,10 +17,15 @@
     "@bhs/eslint-config": "workspace:*",
     "@bhs/prettier": "workspace:*",
     "@bhs/typescript-config": "workspace:*",
-    "@types/node": "^20",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^20.11.24",
+    "bcryptjs": "^2.4.3",
     "dotenv-cli": "^7.4.2",
     "prisma": "^5.17.0",
     "tsx": "^4.16.2"
+  },
+  "prisma": {
+    "seed": "pnpm env:load tsx prisma/seed.ts"
   },
   "prettier": "@bhs/prettier",
   "eslintConfig": {

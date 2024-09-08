@@ -14,9 +14,8 @@ export const authConfig = {
     strategy: 'jwt',
   },
   callbacks: {
-    async signIn({ account, user }) {
-      console.log(account, user)
-      if (account?.provider === 'credentials-provider') {
+    async signIn({ account }) {
+      if (account?.provider === 'credentials') {
         return true
       }
 
