@@ -1,8 +1,8 @@
 'use server'
 
+import { hashPassword } from '@bhs/core'
 import { db } from '@bhs/drizzle'
 import { user } from '@bhs/drizzle/schema'
-import { hash } from 'bcryptjs'
 import { z } from 'zod'
 import { createServerAction } from 'zsa'
 
@@ -49,7 +49,7 @@ export const signUpAction = createServerAction()
       throw new Error('user already exists.')
     }
 
-    const passwordHash = await hash(password, 10)
+    const passwordHash = await hashPassword(password)
     await db.insert(user).values({
       email,
       name,
