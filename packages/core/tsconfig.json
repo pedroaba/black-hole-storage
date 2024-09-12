@@ -5,7 +5,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "inlineSources": false,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "moduleResolution": "bundler",
     "noUnusedLocals": false,
     "noUnusedParameters": false,
@@ -15,6 +15,17 @@
     "lib": ["DOM", "ES2015"],
     "module": "ESNext",
     "target": "es6",
+    "types": [
+      "vitest/globals"
+    ],
+    "paths": {
+      "@core/*": ["./general/*"],
+      "@domain/*": ["./domain/*"],
+      "@enterprise/*": ["./enterprise/*"],
+      "@test/*": ["./test/*"],
+      "@mappers/*": ["./database/drizzle/mappers/*"],
+      "@database/*": ["./database/*"]
+    }
   },
   "include": [
     "./**/*.ts",

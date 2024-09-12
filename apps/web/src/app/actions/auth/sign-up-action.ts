@@ -1,8 +1,6 @@
 'use server'
 
-import { hashPassword } from '@bhs/core'
-import { db } from '@bhs/drizzle'
-import { user } from '@bhs/drizzle/schema'
+import { DrizzleUserRepository, RegisterUserUseCase } from '@bhs/core'
 import { z } from 'zod'
 import { createServerAction } from 'zsa'
 
@@ -39,20 +37,16 @@ export const signUpAction = createServerAction()
   .handler(async function signInWithCredentials({ input }) {
     const { email, password, name } = input
 
-    const drizzleUser = await db.query.user.findFirst({
-      where(fields, { eq }) {
-        return eq(fields.email, email)
-      },
-    })
+    const userRepository = new DrizzleUserRepository()
+    const registerUserUseCase = new RegisterUserUseCase(userRepository)
 
-    if (drizzleUser) {
-      throw new Error('user already exists.')
-    }
-
-    const passwordHash = await hashPassword(password)
-    await db.insert(user).values({
+    const result = await registerUserUseCase.execute({
       email,
       name,
-      password: passwordHash,
+      password,
     })
+
+    if (!result.value.user) {
+      throw new Error(result.value.message)
+    }
   })

@@ -6,6 +6,10 @@
   "types": "index.ts",
   "type": "module",
   "scripts": {
+    "test": "pnpm env:load vitest run",
+    "test:watch": "pnpm env:load vitest",
+    "test:ui": "pnpm env:load vitest --ui",
+    "test:cov": "pnpm env:load vitest run --coverage",
     "env:load": "dotenv -e ../../.env --"
   },
   "dependencies": {
@@ -17,9 +21,14 @@
     "@bhs/eslint-config": "workspace:*",
     "@bhs/prettier": "workspace:*",
     "@bhs/typescript-config": "workspace:*",
+    "@faker-js/faker": "^9.0.0",
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
-    "dotenv-cli": "^7.4.2"
+    "@vitest/coverage-v8": "^2.0.5",
+    "@vitest/ui": "^2.0.5",
+    "dotenv-cli": "^7.4.2",
+    "vite-tsconfig-paths": "^5.0.1",
+    "vitest": "^2.0.5"
   },
   "prettier": "@bhs/prettier",
   "eslintConfig": {

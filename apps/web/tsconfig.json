@@ -1,6 +1,9 @@
 {
   "extends": "@bhs/typescript-config/nextjs.json",
   "compilerOptions": {
+    "types": [
+      "@bhs/core"
+    ],
     "paths": {
       "@/*": ["./src/*"],
       "@assets/*": ["./src/assets/*"]
