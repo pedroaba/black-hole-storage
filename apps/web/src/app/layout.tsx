@@ -2,8 +2,8 @@ import './globals.css'
 
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
-import Link from 'next/link'
 
+// import Link from 'next/link'
 import { Header } from '@/components/header'
 import { Toaster } from '@/components/ui/sonner'
 
@@ -40,7 +40,7 @@ export default function RootLayout({
           <Header />
           {children}
 
-          <span className="fixed text-zinc-950 dark:text-zinc-50 font-semibold text-xs bottom-4 left-1/2 -translate-x-1/2 z-50">
+          {/* <span className="fixed text-zinc-950 dark:text-zinc-50 font-semibold text-xs bottom-4 left-1/2 -translate-x-1/2 z-50">
             developed by{' '}
             <Link
               href="https://github.com/pedroaba"
@@ -50,7 +50,7 @@ export default function RootLayout({
             >
               pedr.augustobarbosa.aparecido@gmail.com
             </Link>
-          </span>
+          </span> */}
 
           <Toaster richColors position="top-center" closeButton />
         </Providers>

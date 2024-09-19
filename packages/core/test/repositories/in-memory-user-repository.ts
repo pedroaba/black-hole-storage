@@ -16,4 +16,13 @@ export class InMemoryUserDatabase implements UserRepository {
   async create(user: User): Promise<void> {
     this.items.push(user)
   }
+
+  async findById(userId: string): Promise<User | null> {
+    const user = this.items.find((user) => user.id.toString() === userId)
+    if (!user) {
+      return null
+    }
+
+    return user
+  }
 }

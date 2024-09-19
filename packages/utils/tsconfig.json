@@ -1,0 +1,9 @@
+{
+  "extends": ["@bhs/typescript-config/library.json"],
+  "include": [
+    "./**/*.ts",
+    "./**/*.d.ts",
+    "./.eslintrc.js"
+  ],
+  "exclude": ["node_modules"]
+}
