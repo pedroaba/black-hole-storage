@@ -17,10 +17,10 @@ export async function Header() {
       </Link>
 
       <div className="flex items-center gap-2">
-        <ThemeToggle />
         {session?.user && <UserProfileIcon />}
         {!session?.user && (
           <>
+            <ThemeToggle />
             <Link href="/auth/sign-in" className="mr-2 hover:underline">
               Sign In
             </Link>

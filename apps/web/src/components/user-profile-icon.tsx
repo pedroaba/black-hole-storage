@@ -2,6 +2,7 @@ import { auth, signOut } from '@bhs/auth'
 import { Github, LogOut } from 'lucide-react'
 import Link from 'next/link'
 
+import { ThemeToggleSubMenu } from './theme-toggle-sub-menu'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import {
   DropdownMenu,
@@ -40,7 +41,7 @@ export async function UserProfileIcon() {
           <p className="truncate w-32 capitalize">{userName}</p>
           <Avatar className="size-8">
             <AvatarImage src={session?.user?.image ?? '#'} />
-            <AvatarFallback className="uppercase text-xs font-bold font-mono">
+            <AvatarFallback className="uppercase text-xs font-bold font-mono bg-zinc-300">
               {initialLetters}
             </AvatarFallback>
           </Avatar>
@@ -54,35 +55,39 @@ export async function UserProfileIcon() {
                 Perfil
               </Link>
             </DropdownMenuItem>
+            <ThemeToggleSubMenu />
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
-
-          <DropdownMenuItem>
-            <Link
-              href="https://github.com/pedroaba/black-hole-storage"
-              className="flex justify-between w-full items-center"
-            >
-              <span>GitHub</span>
-              <Github className="size-4" />
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Link
-              href="https://github.com/pedroaba/black-hole-storage/issues"
-              className="flex justify-between w-full items-center"
-            >
-              <span>Suporte</span>
-            </Link>
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <form action={handleSignOut}>
+          <DropdownMenuGroup>
             <DropdownMenuItem>
-              <button className="w-full flex items-center justify-between">
-                <span>Sair</span>
-                <LogOut className="size-4" />
-              </button>
+              <Link
+                href="https://github.com/pedroaba/black-hole-storage"
+                className="flex justify-between w-full items-center"
+              >
+                <span>GitHub</span>
+                <Github className="size-4" />
+              </Link>
             </DropdownMenuItem>
-          </form>
+            <DropdownMenuItem>
+              <Link
+                href="https://github.com/pedroaba/black-hole-storage/issues"
+                className="flex justify-between w-full items-center"
+              >
+                <span>Suporte</span>
+              </Link>
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+          <DropdownMenuSeparator />
+          <DropdownMenuGroup>
+            <form action={handleSignOut}>
+              <DropdownMenuItem>
+                <button className="w-full flex items-center justify-between">
+                  <span>Sair</span>
+                  <LogOut className="size-4" />
+                </button>
+              </DropdownMenuItem>
+            </form>
+          </DropdownMenuGroup>
         </DropdownMenuContent>
       </DropdownMenuPortal>
     </DropdownMenu>
