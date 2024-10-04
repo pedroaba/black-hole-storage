@@ -14,6 +14,8 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
+import { ChangePasswordForm } from './change-password-form'
+
 export const description =
   'A settings page. The settings page has a sidebar navigation and a main content area. The main content area has a form to update the store name and a form to update the plugins directory. The sidebar navigation has links to general, security, integrations, support, organizations, and advanced settings.'
 
@@ -51,7 +53,7 @@ export default async function Profile() {
 
           <TabsContent
             value="personal-information"
-            className="space-y-4 overflow-y-auto max-h-screen mt-0"
+            className="space-y-4 overflow-y-auto mt-0"
           >
             <Card>
               <CardContent className="flex items-start p-6 justify-between">
@@ -105,28 +107,7 @@ export default async function Profile() {
               </CardContent>
             </Card>
 
-            <Card>
-              <CardContent className="p-6 mb-4">
-                <div className="mb-4 flex justify-between items-center">
-                  <CardHeader className="p-0 text-lg">Senha</CardHeader>
-                  <Button variant="secondary">Alterar senha</Button>
-                </div>
-
-                <div className="space-y-1">
-                  <Label>Nova senha</Label>
-                  <Input placeholder="nova senha" disabled type="password" />
-                </div>
-
-                <div className="space-y-1 mt-2">
-                  <Label>Confirme sua senha</Label>
-                  <Input
-                    placeholder="confirme sua senha"
-                    disabled
-                    type="password"
-                  />
-                </div>
-              </CardContent>
-            </Card>
+            <ChangePasswordForm />
           </TabsContent>
 
           <TabsContent value="account">
