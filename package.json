@@ -2,6 +2,7 @@
   "name": "black-hole-storage",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -18,8 +19,8 @@
   },
   "dependencies": {
     "@auth/core": "^0.35.3",
-    "@neondatabase/serverless": "^0.7.2",
     "@hookform/resolvers": "^3.9.0",
+    "@neondatabase/serverless": "^0.7.2",
     "@radix-ui/react-avatar": "^1.1.0",
     "@radix-ui/react-checkbox": "^1.1.1",
     "@radix-ui/react-dialog": "^1.1.1",
@@ -34,6 +35,7 @@
     "bcryptjs": "^2.4.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "dotenv": "^16.4.5",
     "drizzle-orm": "^0.33.0",
     "lucide-react": "^0.439.0",
     "next": "14.2.14",

@@ -27,8 +27,14 @@
       ],
       "@core/*": [
         "./src/core/*"
+      ],
+      "@test/*": [
+        "./test/*"
       ]
-    }
+    },
+    "types": [
+      "vitest/globals"
+    ]
   },
   "include": [
     "next-env.d.ts",

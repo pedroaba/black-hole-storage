@@ -1,5 +1,5 @@
 import type { user } from '@/drizzle/schema'
-import { UniqueEntityId } from '@core/entities/value-objects/unique-entity-id'
+import { UniqueEntityId } from '@core/general/entities/value-objects/unique-entity-id'
 import { User } from '@core/domain/core/entities/user'
 
 type DrizzleUserTable = typeof user.$inferInsert
