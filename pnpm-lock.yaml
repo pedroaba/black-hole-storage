@@ -48,14 +48,26 @@ importers:
         specifier: ^0.11.1
         version: 0.11.1(typescript@5.6.2)(zod@3.23.8)
       '@tanstack/react-query':
-        specifier: ^5.55.1
-        version: 5.59.0(react@18.3.1)
+        specifier: ^5.59.13
+        version: 5.59.13(react@18.3.1)
+      '@trpc/client':
+        specifier: 11.0.0-rc.571
+        version: 11.0.0-rc.571(@trpc/server@11.0.0-rc.571)
+      '@trpc/react-query':
+        specifier: 11.0.0-rc.571
+        version: 11.0.0-rc.571(@tanstack/react-query@5.59.13(react@18.3.1))(@trpc/client@11.0.0-rc.571(@trpc/server@11.0.0-rc.571))(@trpc/server@11.0.0-rc.571)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@trpc/server':
+        specifier: 11.0.0-rc.571
+        version: 11.0.0-rc.571
       bcryptjs:
         specifier: ^2.4.3
         version: 2.4.3
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
+      client-only:
+        specifier: ^0.0.1
+        version: 0.0.1
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -86,6 +98,9 @@ importers:
       react-hook-form:
         specifier: ^7.53.0
         version: 7.53.0(react@18.3.1)
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
       sonner:
         specifier: ^1.5.0
         version: 1.5.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -112,7 +127,7 @@ importers:
         version: 0.2.3(react@18.3.1)(zod@3.23.8)
       zsa-react-query:
         specifier: ^0.2.1
-        version: 0.2.1(@tanstack/react-query@5.59.0(react@18.3.1))(react@18.3.1)(zod@3.23.8)
+        version: 0.2.1(@tanstack/react-query@5.59.13(react@18.3.1))(react@18.3.1)(zod@3.23.8)
     devDependencies:
       '@faker-js/faker':
         specifier: ^9.0.3
@@ -1287,13 +1302,30 @@ packages:
       typescript:
         optional: true
 
-  '@tanstack/query-core@5.59.0':
-    resolution: {integrity: sha512-WGD8uIhX6/deH/tkZqPNcRyAhDUqs729bWKoByYHSogcshXfFbppOdTER5+qY7mFvu8KEFJwT0nxr8RfPTVh0Q==}
+  '@tanstack/query-core@5.59.13':
+    resolution: {integrity: sha512-Oou0bBu/P8+oYjXsJQ11j+gcpLAMpqW42UlokQYEz4dE7+hOtVO9rVuolJKgEccqzvyFzqX4/zZWY+R/v1wVsQ==}
 
-  '@tanstack/react-query@5.59.0':
-    resolution: {integrity: sha512-YDXp3OORbYR+8HNQx+lf4F73NoiCmCcSvZvgxE29OifmQFk0sBlO26NWLHpcNERo92tVk3w+JQ53/vkcRUY1hA==}
+  '@tanstack/react-query@5.59.13':
+    resolution: {integrity: sha512-GB2ELtiH8tL0rcFiM4sWvnXhazt1xRXX/LolMEV12kfEKu58aNA4lQoieslP61PO4vZO9JJMwm+6lqyS0E1HOA==}
     peerDependencies:
       react: ^18 || ^19
+
+  '@trpc/client@11.0.0-rc.571':
+    resolution: {integrity: sha512-mUX47avAwgkirC91rtnde7B8QVbvd+121wgud3q22gYBI1hrGFn8isFwXdPquVneXNL5p1JjfhpZzDwzHmUJ4Q==}
+    peerDependencies:
+      '@trpc/server': 11.0.0-rc.571+a70e169ce
+
+  '@trpc/react-query@11.0.0-rc.571':
+    resolution: {integrity: sha512-+LNIou3JQ/wQybTk1Vt90cKWk8LGGHrhsHiTWJFRiApaNgl/y7EkOfoOZ/we8jY3hPnyG5CXcqXx9SDbrmy8lg==}
+    peerDependencies:
+      '@tanstack/react-query': ^5.54.1
+      '@trpc/client': 11.0.0-rc.571+a70e169ce
+      '@trpc/server': 11.0.0-rc.571+a70e169ce
+      react: '>=18.2.0'
+      react-dom: '>=18.2.0'
+
+  '@trpc/server@11.0.0-rc.571':
+    resolution: {integrity: sha512-CISo9BoXSArTPt3MfxbOTPUcEdtKOl5Qgp8P+udiaA/nRmjndvVeZWQSmy1elRv0mQ/vvUI1VLsYm9Dn1/bysw==}
 
   '@types/bcryptjs@2.4.6':
     resolution: {integrity: sha512-9xlo6R2qDs5uixm0bcIqCeMCE6HiQsIyel9KQySStiyqNl2tnj2mP3DX1Nf56MD6KMenNNlBBsy3LJ7gUEQPXQ==}
@@ -3063,6 +3095,9 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
+  server-only@0.0.1:
+    resolution: {integrity: sha512-qepMx2JxAa5jjfzxG79yPPq+8BuFToHd1hm7kI+Z4zAq1ftQiP7HcxMhDDItrbtwVeLg/cY2JnKnrcFkmiswNA==}
+
   set-function-length@1.2.2:
     resolution: {integrity: sha512-pgRc4hJ4/sNjWCSS9AmnS40x3bNMDTknHgL5UaMBTMyJnU90EgWh1Rz+MC9eFu4BuN/UwZjKQuY/1v3rM7HMfg==}
     engines: {node: '>= 0.4'}
@@ -4337,12 +4372,26 @@ snapshots:
     optionalDependencies:
       typescript: 5.6.2
 
-  '@tanstack/query-core@5.59.0': {}
+  '@tanstack/query-core@5.59.13': {}
 
-  '@tanstack/react-query@5.59.0(react@18.3.1)':
+  '@tanstack/react-query@5.59.13(react@18.3.1)':
     dependencies:
-      '@tanstack/query-core': 5.59.0
+      '@tanstack/query-core': 5.59.13
       react: 18.3.1
+
+  '@trpc/client@11.0.0-rc.571(@trpc/server@11.0.0-rc.571)':
+    dependencies:
+      '@trpc/server': 11.0.0-rc.571
+
+  '@trpc/react-query@11.0.0-rc.571(@tanstack/react-query@5.59.13(react@18.3.1))(@trpc/client@11.0.0-rc.571(@trpc/server@11.0.0-rc.571))(@trpc/server@11.0.0-rc.571)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@tanstack/react-query': 5.59.13(react@18.3.1)
+      '@trpc/client': 11.0.0-rc.571(@trpc/server@11.0.0-rc.571)
+      '@trpc/server': 11.0.0-rc.571
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
+  '@trpc/server@11.0.0-rc.571': {}
 
   '@types/bcryptjs@2.4.6': {}
 
@@ -6331,6 +6380,8 @@ snapshots:
 
   semver@7.6.3: {}
 
+  server-only@0.0.1: {}
+
   set-function-length@1.2.2:
     dependencies:
       define-data-property: 1.1.4
@@ -6809,9 +6860,9 @@ snapshots:
       zod: 3.23.8
       zsa: 0.6.0(zod@3.23.8)
 
-  zsa-react-query@0.2.1(@tanstack/react-query@5.59.0(react@18.3.1))(react@18.3.1)(zod@3.23.8):
+  zsa-react-query@0.2.1(@tanstack/react-query@5.59.13(react@18.3.1))(react@18.3.1)(zod@3.23.8):
     dependencies:
-      '@tanstack/react-query': 5.59.0(react@18.3.1)
+      '@tanstack/react-query': 5.59.13(react@18.3.1)
       react: 18.3.1
       zod: 3.23.8
       zsa: 0.6.0(zod@3.23.8)

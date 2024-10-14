@@ -7,14 +7,14 @@ export const metadata: Metadata = {
   title: 'Sign In',
 }
 
-export default function Login() {
+export default async function Login() {
   return (
-    <div className="h-full w-full grid grid-cols-3">
-      <div className="col-span-2 pt-40 pl-32 space-y-10">
+    <div className="grid h-full w-full grid-cols-3">
+      <div className="col-span-2 space-y-10 pl-32 pt-40">
         <h1 className="text-3xl font-extrabold text-zinc-200">
           Acesse o Universo dos seus Arquivos
         </h1>
-        <p className="text-lg text-zinc-100 w-5/6 font-semibold">
+        <p className="w-5/6 text-lg font-semibold text-zinc-100">
           Mergulhe no infinito com nossa solução estelar de armazenamento em
           nuvem. Com o Black Hole Storage, você entra em uma dimensão de
           segurança impenetrável e acessibilidade ilimitada. Explore, gerencie e
@@ -22,36 +22,36 @@ export default function Login() {
           experiência cósmica onde seus dados são tão vastos quanto o espaço.
         </p>
       </div>
-      <div className="w-full h-full bg-zinc-50 dark:bg-zinc-900">
-        <div className="pt-6 pr-8 text-right">
+      <div className="h-full w-full bg-zinc-50 dark:bg-zinc-900">
+        <div className="pr-8 pt-6 text-right">
           <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">
             Não tenho uma conta ainda?
           </span>{' '}
           <Link
             href="/auth/sign-up"
-            className="text-xs font-semibold text-blue-800 dark:text-blue-400 underline"
+            className="text-xs font-semibold text-blue-800 underline dark:text-blue-400"
           >
             Cadastrar
           </Link>
         </div>
 
-        <div className="flex px-8 flex-col my-16">
-          <h1 className="text-2xl font-semibold text-zinc-800 dark:text-zinc-100 mb-10">
+        <div className="my-16 flex flex-col px-8">
+          <h1 className="mb-10 text-2xl font-semibold text-zinc-800 dark:text-zinc-100">
             Embarcar no sistema
           </h1>
 
           <SignInForm />
         </div>
 
-        <div className="px-8 rounded-full relative flex items-center my-4">
-          <div className="h-px bg-zinc-400 dark:bg-zinc-500 w-full" />
+        <div className="relative my-4 flex items-center rounded-full px-8">
+          <div className="h-px w-full bg-zinc-400 dark:bg-zinc-500" />
 
-          <span className="text-sm text-zinc-400 dark:text-zinc-500 absolute -top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-zinc-50 dark:bg-zinc-900 z-50 px-4">
+          <span className="absolute -top-1/2 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2 bg-zinc-50 px-4 text-sm text-zinc-400 dark:bg-zinc-900 dark:text-zinc-500">
             ou
           </span>
         </div>
 
-        <p className="text-sm text-zinc-800 px-8 text-center my-8 mb-5 dark:text-zinc-200">
+        <p className="my-8 mb-5 px-8 text-center text-sm text-zinc-800 dark:text-zinc-200">
           Em breve você poderá embarcar no sistema através da sua conta social.
         </p>
 
@@ -61,7 +61,7 @@ export default function Login() {
           </span>{' '}
           <Link
             href="/auth/sign-up"
-            className="text-xs font-semibold text-blue-800 dark:text-blue-400 underline"
+            className="text-xs font-semibold text-blue-800 underline dark:text-blue-400"
           >
             Cadastrar
           </Link>
