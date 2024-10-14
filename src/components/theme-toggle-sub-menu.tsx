@@ -1,5 +1,6 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import { useTheme } from 'next-themes'
 
 import { cn } from '@/lib/utils'
@@ -13,10 +14,11 @@ import {
 
 export function ThemeToggleSubMenu() {
   const { theme, setTheme } = useTheme()
+  const translations = useTranslations('theme')
 
   return (
     <DropdownMenuSub>
-      <DropdownMenuSubTrigger>Tema</DropdownMenuSubTrigger>
+      <DropdownMenuSubTrigger>{translations('default')}</DropdownMenuSubTrigger>
       <DropdownMenuSubContent sideOffset={8}>
         <DropdownMenuItem
           className={cn(
@@ -25,7 +27,7 @@ export function ThemeToggleSubMenu() {
           )}
           onClick={() => setTheme('light')}
         >
-          Light
+          {translations('light')}
         </DropdownMenuItem>
         <DropdownMenuItem
           className={cn(
@@ -34,7 +36,7 @@ export function ThemeToggleSubMenu() {
           )}
           onClick={() => setTheme('dark')}
         >
-          Dark
+          {translations('dark')}
         </DropdownMenuItem>
         <DropdownMenuItem
           className={cn(
@@ -42,7 +44,7 @@ export function ThemeToggleSubMenu() {
           )}
           onClick={() => setTheme('system')}
         >
-          System
+          {translations('system')}
         </DropdownMenuItem>
       </DropdownMenuSubContent>
     </DropdownMenuSub>

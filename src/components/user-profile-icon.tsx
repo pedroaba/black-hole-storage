@@ -1,5 +1,6 @@
 import { Github, LogOut } from 'lucide-react'
 import Link from 'next/link'
+import { getTranslations } from 'next-intl/server'
 
 import { auth, signOut } from '@/lib/auth'
 
@@ -29,6 +30,8 @@ export async function UserProfileIcon() {
       }, '')
       .slice(0, 2) ?? 'UU'
 
+  const translations = await getTranslations('navbar')
+
   async function handleSignOut() {
     'use server'
 
@@ -53,7 +56,7 @@ export async function UserProfileIcon() {
           <DropdownMenuGroup>
             <DropdownMenuItem>
               <Link className="w-full" href="/profile">
-                Perfil
+                {translations('profile')}
               </Link>
             </DropdownMenuItem>
             <ThemeToggleSubMenu />
@@ -74,7 +77,7 @@ export async function UserProfileIcon() {
                 href="https://github.com/pedroaba/black-hole-storage/issues"
                 className="flex w-full items-center justify-between"
               >
-                <span>Suporte</span>
+                <span>{translations('support')}</span>
               </Link>
             </DropdownMenuItem>
           </DropdownMenuGroup>
@@ -83,7 +86,7 @@ export async function UserProfileIcon() {
             <form action={handleSignOut}>
               <DropdownMenuItem>
                 <button className="flex w-full items-center justify-between">
-                  <span>Sair</span>
+                  <span>{translations('logout')}</span>
                   <LogOut className="size-4" />
                 </button>
               </DropdownMenuItem>

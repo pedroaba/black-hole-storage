@@ -1,0 +1,205 @@
+{
+  "navbar": {
+    "profile": "Profile",
+    "theme": "Theme",
+    "support": "Support",
+    "logout": "Logout",
+    "signIn": "Sign In"
+  },
+  "theme": {
+    "default": "Theme",
+    "toggle": "Toggle Theme",
+    "dark": "Dark",
+    "light": "Light",
+    "system": "System"
+  },
+  "language": {
+    "trigger": "Language",
+    "en": "English",
+    "pt-BR": "Portuguese"
+  },
+  "validation": {
+    "pages": {
+      "profile": {
+        "changePasswordSchema": {
+          "currentPassword": {
+            "required": "Type a valid password.",
+            "min": "You need to enter your current password to change your password"
+          },
+          "newPassword": {
+            "required": "Type a valid password.",
+            "min": "You need to enter your new password to change your password",
+            "match": "The new password is not the same as the password confirmation"
+          },
+          "confirmPassword": {
+            "required": "Type a valid password.",
+            "min": "You need to enter your new password to confirm"
+          }
+        }
+      },
+      "signIn": {
+        "schema": {
+          "email": {
+            "required": "E-mail is required.",
+            "format": "Type a valid email."
+          },
+          "password": {
+            "required": "Password is required."
+          }
+        },
+        "invalidCredentials": "Invalid email or password"
+      }
+    }
+  },
+  "messages": {
+    "toasts": {
+      "any": {
+        "error": "Any error was occurred, please try again later."
+      },
+      "pages": {
+        "profile": {
+          "changePassword": {
+            "success": "Password has been changed."
+          }
+        },
+        "signIn": {
+          "success": {
+            "title": "Logged In with success",
+            "message": "Welcome to the spaceship, and let's go towards infinity"
+          },          
+          "failed": {
+            "title": "Invalid Credentials"
+          }
+        }
+      }
+    },
+    "routes": {
+      "profile": {
+        "changePassword": {
+          "doesNotMatchWithCurrentPassword": "The passwords does not match with current password",
+          "success": "Password was changed with success"
+        }
+      },
+      "generics": {
+        "userDoesNotExists": "User doesn't exists!"
+      }
+    }
+  },
+  "Profile": {
+    "title": "Profile",
+    "tabs": {
+      "info": {
+        "title": "Personal Information",
+        "cards": {
+          "avatar": {
+            "title": "Avatar",
+            "description": "Please use a profile image with a maximum size of 10 MB.",
+            "changeButton": {
+              "text": "Change photo"
+            }
+          },
+          "info": {
+            "title": "Informations",
+            "form": {
+              "fields": {
+                "name": {
+                  "label": "Name",
+                  "placeholder": "Username"
+                },
+                "email": {
+                  "label": "E-mail",
+                  "placeholder": "User e-mail"
+                }
+              }
+            }
+          },
+          "password": {
+            "title": "Password",
+            "form": {
+              "fields": {
+                "oldPassword": {
+                  "label": "Old Password",
+                  "placeholder": "old password"
+                },
+                "newPassword": {
+                  "label": "New Password",
+                  "placeholder": "new password"
+                },
+                "confirmationPassword": {
+                  "label": "Confirm your new password",
+                  "placeholder": "confirm your new password"
+                }
+              },
+              "submit": {
+                "text": "Save"
+              }
+            }
+          }
+        }
+      },
+      "account": {
+        "title": "Account"
+      }
+    }
+  },
+  "SignIn": {
+    "title": "Access the Universe of your Files",
+    "description": "Dive into infinity with our stellar cloud storage solution. With Black Hole Storage, you enter a dimension of impenetrable security and unlimited accessibility. Explore, manage and protect your files in the vast digital universe. Get ready for a cosmic experience where your data is as vast as space.",
+    "form": {
+      "createAccount": {
+        "text": "Don't have an account yet?",
+        "link": "Sign Up"
+      },
+      "title": "Embark on the system",
+      "fields": {
+        "email": {
+          "label": "E-mail",
+          "placeholder": "Ex: johndoe@email.com"
+        },
+        "password": {
+          "label": "Password",
+          "placeholder": ""
+        }
+      },
+      "submit": {
+        "text": "Embark"
+      },
+      "separator": "or",
+      "comingSoon": "You will soon be able to join the system through your social account."
+    }
+  },
+  "SignUp": {
+    "title": "Explore New Horizons",
+    "description": "Discover the unknown and expand your possibilities with Black Hole Storage. When you create your account, you open the doors to a universe of secure and unlimited storage, where your files are protected in the depths of the digital cosmos. Join us and start your journey into the infinite space of security and accessibility. Are you ready to go into orbit?",
+    "form": {
+      "signWithAccount": {
+        "text": "Já tenho uma conta?",
+        "link": "Embarcar"
+      },
+      "title": "Embarcar no sistema",
+      "fields": {
+        "name": {
+          "label": "Nome",
+          "placeholder": "Ex: Fulano"
+        },
+        "email": {
+          "label": "E-mail",
+          "placeholder": "Ex: fulano@email.com"
+        },
+        "password": {
+          "label": "Senha",
+          "placeholder": ""
+        },
+        "confirmPassword": {
+          "label": "Confirmar Senha",
+          "placeholder": ""
+        }
+      },
+      "submit": {
+        "text": "Embarcar"
+      },
+      "separator": "ou",
+      "comingSoon": "Em breve você poderá embarcar no sistema através da sua conta social."
+    }
+  }
+}

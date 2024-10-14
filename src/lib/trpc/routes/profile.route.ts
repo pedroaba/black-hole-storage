@@ -1,6 +1,6 @@
-import { TRPCError } from '@trpc/server'
 import { compareSync, hashSync } from 'bcryptjs'
 import { eq } from 'drizzle-orm'
+import { getTranslations } from 'next-intl/server'
 import { z } from 'zod'
 
 import { db } from '@/drizzle'
@@ -17,6 +17,7 @@ export const profileRoute = createTRPCRouter({
       }),
     )
     .mutation(async ({ input, ctx }) => {
+      const translations = await getTranslations('messages')
       const { current_password: currentPassword, new_password: newPassword } =
         input
       const { session } = ctx
@@ -30,7 +31,7 @@ export const profileRoute = createTRPCRouter({
       if (!userOnDb) {
         return {
           success: false,
-          message: 'User does not exists!',
+          message: translations('routes.generics.userDoesNotExists'),
         }
       }
 
@@ -40,10 +41,12 @@ export const profileRoute = createTRPCRouter({
       )
 
       if (!hasSamePasswordOfLoggedUser) {
-        throw new TRPCError({
-          code: 'BAD_REQUEST',
-          message: 'The passwords does not match with current password',
-        })
+        return {
+          success: false,
+          message: translations(
+            'routes.profile.changePassword.doesNotMatchWithCurrentPassword',
+          ),
+        }
       }
 
       const passwordHashed = hashSync(newPassword, 10)
@@ -58,7 +61,7 @@ export const profileRoute = createTRPCRouter({
 
       return {
         success: true,
-        message: 'Password was changed with success',
+        message: translations('routes.profile.changePassword.success'),
       }
     }),
 })

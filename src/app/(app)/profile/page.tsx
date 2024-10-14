@@ -1,4 +1,5 @@
 import { Pen } from 'lucide-react'
+import { getTranslations } from 'next-intl/server'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
@@ -12,14 +13,12 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { auth } from '@/lib/auth'
-import { serverClient } from '@/lib/trpc/server'
 import { getInitialLettersFromUsername } from '@/utils/get-initial-letters-from-username'
 
 import { ChangePasswordForm } from './change-password-form'
 
 export default async function Profile() {
-  const { message } = await serverClient.hello()
-  console.log(message)
+  const translations = await getTranslations('Profile')
 
   const session = await auth()
   const initialLetters = getInitialLettersFromUsername(
@@ -28,9 +27,9 @@ export default async function Profile() {
 
   return (
     <div className="flex min-h-screen w-full flex-col">
-      <main className="bg-muted/40 flex min-h-[calc(100vh_-_theme(spacing.16))] flex-1 flex-col gap-4 p-4 md:gap-8 md:p-10">
+      <div className="bg-muted/40 flex flex-col gap-4 p-4 md:gap-8 md:p-10">
         <div className="mx-auto grid w-full max-w-6xl gap-2">
-          <h1 className="text-3xl font-semibold">Perfil</h1>
+          <h1 className="text-3xl font-semibold">{translations('title')}</h1>
         </div>
         <Tabs
           defaultValue="personal-information"
@@ -41,14 +40,14 @@ export default async function Profile() {
               value="personal-information"
               className="w-full px-10 py-2 font-semibold text-zinc-700 hover:bg-zinc-300 dark:text-zinc-200 dark:hover:bg-zinc-900"
             >
-              Informações Pessoais
+              {translations('tabs.info.title')}
             </TabsTrigger>
 
             <TabsTrigger
               value="account"
               className="px-10 py-2 font-semibold text-zinc-700 hover:bg-zinc-300 dark:text-zinc-200 dark:hover:bg-zinc-900"
             >
-              Conta
+              {translations('tabs.account.title')}
             </TabsTrigger>
           </TabsList>
 
@@ -59,14 +58,15 @@ export default async function Profile() {
             <Card>
               <CardContent className="flex items-start justify-between p-6">
                 <div>
-                  <CardHeader className="p-0 text-lg">Avatar</CardHeader>
+                  <CardHeader className="p-0 text-lg">
+                    {translations('tabs.info.cards.avatar.title')}
+                  </CardHeader>
                   <CardDescription>
-                    Por favor, utilize uma imagem de perfil com tamanho máximo
-                    de 10 MB.
+                    {translations('tabs.info.cards.avatar.description')}
                   </CardDescription>
 
                   <Button className="mt-4" variant="secondary">
-                    Alterar foto
+                    {translations('tabs.info.cards.avatar.changeButton.text')}
                   </Button>
                 </div>
                 <Avatar className="size-16">
@@ -81,25 +81,39 @@ export default async function Profile() {
             <Card>
               <CardContent className="p-6">
                 <div className="mb-4 flex justify-between">
-                  <CardHeader className="p-0 text-lg">Informações</CardHeader>
+                  <CardHeader className="p-0 text-lg">
+                    {translations('tabs.info.cards.info.title')}
+                  </CardHeader>
                   <Button size="icon" variant="ghost">
                     <Pen className="size-4" />
                   </Button>
                 </div>
 
                 <div className="space-y-1">
-                  <Label>Nome</Label>
+                  <Label>
+                    {translations(
+                      'tabs.info.cards.info.form.fields.name.label',
+                    )}
+                  </Label>
                   <Input
-                    placeholder="Nome do usuário"
+                    placeholder={translations(
+                      'tabs.info.cards.info.form.fields.name.placeholder',
+                    )}
                     disabled
                     value={session?.user?.name ?? ''}
                   />
                 </div>
 
                 <div className="mt-2 space-y-1">
-                  <Label>E-mail</Label>
+                  <Label>
+                    {translations(
+                      'tabs.info.cards.info.form.fields.email.label',
+                    )}
+                  </Label>
                   <Input
-                    placeholder="E-mail do usuário"
+                    placeholder={translations(
+                      'tabs.info.cards.info.form.fields.email.placeholder',
+                    )}
                     disabled
                     type="email"
                     value={session?.user?.email ?? ''}
@@ -138,7 +152,7 @@ export default async function Profile() {
             </Card>
           </TabsContent>
         </Tabs>
-      </main>
+      </div>
     </div>
   )
 }
