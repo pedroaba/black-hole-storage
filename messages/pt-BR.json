@@ -48,6 +48,26 @@
           }
         },
         "invalidCredentials": "E-mail ou senha inválidos"
+      },
+      "signUp": {
+        "schema": {
+          "name": {
+            "required": "O nome é obrigatório",
+            "min": "Você precisa colocar um nome com no mínimo 6 caracteres"
+          },
+          "email": {
+            "required":"O email é obrigatório",
+            "format":"Insira um email válido."
+          },
+          "password": {
+            "required":"A senha é obrigatória.",
+            "min": "A senha precisa ter no mínimo 8 caracteres",
+            "match": "A senha não é igual a confirmação"
+          },
+          "confirmationPassword": {
+            "required": "Entre com a confirmação de senha"
+          }
+        }
       }
     }
   },
@@ -69,6 +89,14 @@
           },
           "failed": {
             "title": "Credenciais inválidas."
+          }
+        },
+        "signUp": {
+          "success": {
+            "title": "Usuário criado com sucesso"
+          },
+          "failed": {
+            "title": "Erro ao tentar cria usuário"
           }
         }
       }

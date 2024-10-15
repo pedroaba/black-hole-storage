@@ -6,17 +6,8 @@ import { createServerAction } from 'zsa'
 import { signIn } from '@/lib/auth'
 
 const signSchema = z.object({
-  email: z
-    .string({
-      required_error: 'É necessário passar o seu email.',
-    })
-    .email({
-      message: 'Entre com um email válido.',
-    }),
-
-  password: z.string({
-    required_error: 'A senha não pode ser vazia',
-  }),
+  email: z.string(),
+  password: z.string(),
 })
 
 export const signInWithCredentialsAction = createServerAction()

@@ -37,6 +37,26 @@
           }
         }
       },
+      "signUp": {
+        "schema": {
+          "name": {
+            "required": "Name is required.",
+            "min": "You must enter a name with at least 6 characters"
+          },
+          "email": {
+            "required":"E-mail is required.",
+            "format":"Type a valid email."
+          },
+          "password": {
+            "required":"Password is required.",
+            "min": "The password must be at least 8 characters long",
+            "match": "The password didn't match"
+          },
+          "confirmationPassword": {
+            "required": "Enter password confirmation"
+          }
+        }
+      },
       "signIn": {
         "schema": {
           "email": {
@@ -69,6 +89,14 @@
           },          
           "failed": {
             "title": "Invalid Credentials"
+          }
+        },
+        "signUp": {
+          "success": {
+            "title": "User created successfully"
+          },
+          "failed": {
+            "title": "Error when trying to create user"
           }
         }
       }
@@ -173,33 +201,33 @@
     "description": "Discover the unknown and expand your possibilities with Black Hole Storage. When you create your account, you open the doors to a universe of secure and unlimited storage, where your files are protected in the depths of the digital cosmos. Join us and start your journey into the infinite space of security and accessibility. Are you ready to go into orbit?",
     "form": {
       "signWithAccount": {
-        "text": "Já tenho uma conta?",
-        "link": "Embarcar"
+        "text": "Already have an account?",
+        "link": "Login"
       },
-      "title": "Embarcar no sistema",
+      "title": "Embark on the system",
       "fields": {
         "name": {
-          "label": "Nome",
-          "placeholder": "Ex: Fulano"
+          "label": "name",
+          "placeholder": "Ex: John Doe"
         },
         "email": {
           "label": "E-mail",
-          "placeholder": "Ex: fulano@email.com"
+          "placeholder": "Ex: johndoe@email.com"
         },
         "password": {
-          "label": "Senha",
+          "label": "Password",
           "placeholder": ""
         },
         "confirmPassword": {
-          "label": "Confirmar Senha",
+          "label": "Confirm password",
           "placeholder": ""
         }
       },
       "submit": {
-        "text": "Embarcar"
+        "text": "Sign Up"
       },
-      "separator": "ou",
-      "comingSoon": "Em breve você poderá embarcar no sistema através da sua conta social."
+      "separator": "or",
+      "comingSoon": "You will soon be able to join the system through your social account."
     }
   }
 }

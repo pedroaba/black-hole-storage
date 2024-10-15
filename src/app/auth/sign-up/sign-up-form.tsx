@@ -3,6 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { LoaderCircle } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
@@ -20,84 +21,94 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 
-export const signSchema = z
-  .object({
-    name: z
-      .string({
-        required_error: 'Insira o seu nome.',
-      })
-      .min(6, {
-        message: 'Você precisa colocar um nome com no mínimo 6 caracteres',
-      })
-      .transform((name, context) => {
-        const nameRefined = name.trim()
-        if (nameRefined.length < 6) {
-          context.addIssue({
-            code: z.ZodIssueCode.too_small,
-            minimum: 6,
-            type: 'string',
-            inclusive: true,
-            message: 'Você precisa colocar um nome com no mínimo 6 caracteres',
-          })
+export const createSignSchema = (t: (k: string) => string) =>
+  z
+    .object({
+      name: z
+        .string({
+          required_error: t('signUp.schema.name.required'),
+        })
+        .min(6, {
+          message: t('signUp.schema.name.min'),
+        })
+        .transform((name, context) => {
+          const nameRefined = name.trim()
+          if (nameRefined.length < 6) {
+            context.addIssue({
+              code: z.ZodIssueCode.too_small,
+              minimum: 6,
+              type: 'string',
+              inclusive: true,
+              message: t('signUp.schema.name.min'),
+            })
 
-          return z.NEVER
-        }
+            return z.NEVER
+          }
 
-        return nameRefined
+          return nameRefined
+        }),
+
+      email: z
+        .string({
+          required_error: t('signUp.schema.email.required'),
+        })
+        .email({
+          message: t('signUp.schema.email.format'),
+        }),
+
+      password: z
+        .string({
+          required_error: t('signUp.schema.password.required'),
+        })
+        .min(8, {
+          message: t('signUp.schema.password.min'),
+        })
+        .transform((password, context) => {
+          const passwordRefined = password.trim()
+          if (passwordRefined.length < 8) {
+            context.addIssue({
+              code: z.ZodIssueCode.too_small,
+              minimum: 6,
+              type: 'string',
+              inclusive: true,
+              message: t('signUp.schema.password.min'),
+            })
+
+            return z.NEVER
+          }
+
+          return passwordRefined
+        }),
+      confirmPassword: z.string({
+        required_error: t('signUp.schema.confirmationPassword.required'),
       }),
+    })
+    .refine(({ confirmPassword, password }) => password === confirmPassword, {
+      message: t('signUp.schema.password.match'),
+      path: ['password'],
+    })
 
-    email: z
-      .string({
-        required_error: 'É necessário passar o seu email.',
-      })
-      .email({
-        message: 'Entre com um email válido.',
-      }),
-
-    password: z
-      .string({
-        required_error: 'A senha não pode ser vazia',
-      })
-      .min(8, {
-        message: 'A senha precisa ter no mínimo 8 caracteres',
-      })
-      .transform((password, context) => {
-        const passwordRefined = password.trim()
-        if (passwordRefined.length < 8) {
-          context.addIssue({
-            code: z.ZodIssueCode.too_small,
-            minimum: 6,
-            type: 'string',
-            inclusive: true,
-            message: 'A senha precisa ter no mínimo 8 caracteres',
-          })
-
-          return z.NEVER
-        }
-
-        return passwordRefined
-      }),
-    confirmPassword: z.string({
-      required_error: 'Insira a confirmação da senha',
-    }),
-  })
-  .refine(({ confirmPassword, password }) => password === confirmPassword, {
-    message: 'As senhas não são iguais',
-    path: ['password'],
-  })
-
-export type SignUpSchema = z.infer<typeof signSchema>
+// export type SignUpSchema = z.infer<typeof signSchema>
 
 export function SignUpForm() {
+  const t = useTranslations('SignUp')
+  const tValidation = useTranslations('validation')
+  const tMessage = useTranslations('messages')
   const router = useRouter()
 
   const { execute, isPending } = useServerAction(signUpAction)
-  const form = useForm<SignUpSchema>({
-    resolver: zodResolver(signSchema),
+
+  const schema = createSignSchema(tValidation)
+  const form = useForm<z.infer<typeof schema>>({
+    resolver: zodResolver(schema),
     disabled: isPending,
   })
 
-  async function handleSignUp({ email, name, password }: SignUpSchema) {
+  async function handleSignUp({
+    email,
+    name,
+    password,
+  }: z.infer<typeof schema>) {
     const [, error] = await execute({
       email,
       password,
@@ -105,14 +116,14 @@ export function SignUpForm() {
     })
 
     if (error) {
-      toast.error('Erro ao tentar cria usuário', {
+      toast.error(tMessage('toasts.pages.signUp.failed.title'), {
         description: error.message,
       })
 
       return
     }
 
-    toast.success('Usuário criado com sucesso')
+    toast.success(tMessage('toasts.pages.signUp.success.title'))
     router.replace('/auth/sign-in')
   }
 
@@ -127,9 +138,12 @@ export function SignUpForm() {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Nome *</FormLabel>
+              <FormLabel>{t('form.fields.name.label')} *</FormLabel>
               <FormControl>
-                <Input placeholder="Ex: John Doe" {...field} />
+                <Input
+                  placeholder={t('form.fields.name.placeholder')}
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -141,10 +155,10 @@ export function SignUpForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>E-mail *</FormLabel>
+              <FormLabel>{t('form.fields.email.label')} *</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Ex: johndoe@email.com"
+                  placeholder={t('form.fields.email.placeholder')}
                   type="email"
                   {...field}
                 />
@@ -159,7 +173,7 @@ export function SignUpForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Senha *</FormLabel>
+              <FormLabel>{t('form.fields.password.label')} *</FormLabel>
               <FormControl>
                 <Input placeholder="●●●●●●●●●●●●" type="password" {...field} />
               </FormControl>
@@ -173,7 +187,7 @@ export function SignUpForm() {
           name="confirmPassword"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Confirmar senha *</FormLabel>
+              <FormLabel>{t('form.fields.confirmPassword.label')} *</FormLabel>
               <FormControl>
                 <Input placeholder="●●●●●●●●●●●●" type="password" {...field} />
               </FormControl>
@@ -185,9 +199,9 @@ export function SignUpForm() {
         <div className="pt-6">
           <Button className="w-full" variant="secondary" disabled={isPending}>
             {isPending ? (
-              <LoaderCircle className="size-4 text-zinc-800 dark:text-zinc-100 animate-spin" />
+              <LoaderCircle className="size-4 animate-spin text-zinc-800 dark:text-zinc-100" />
             ) : (
-              'Embarcar'
+              t('form.submit.text')
             )}
           </Button>
         </div>

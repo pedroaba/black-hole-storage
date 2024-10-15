@@ -6,29 +6,9 @@ import { z } from 'zod'
 import { createServerAction } from 'zsa'
 
 const signSchema = z.object({
-  name: z
-    .string({
-      required_error: 'Insira o seu nome.',
-    })
-    .min(6, {
-      message: 'Você precisa colocar um nome com no mínimo 6 caracteres',
-    }),
-
-  email: z
-    .string({
-      required_error: 'É necessário passar o seu email.',
-    })
-    .email({
-      message: 'Entre com um email válido.',
-    }),
-
-  password: z
-    .string({
-      required_error: 'A senha não pode ser vazia',
-    })
-    .min(8, {
-      message: 'A senha precisa ter no mínimo 8 caracteres',
-    }),
+  name: z.string(),
+  email: z.string(),
+  password: z.string(),
 })
 
 export const signUpAction = createServerAction()
