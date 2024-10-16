@@ -9,7 +9,7 @@ import { toast } from 'sonner'
 import { z } from 'zod'
 import { useServerAction } from 'zsa-react'
 
-import { signUpAction } from '@/app/actions/auth/sign-up-action'
+import { signUpAction } from '@/app/actions/auth/sign-up-actions'
 import { Button } from '@/components/ui/button'
 import {
   Form,
@@ -26,10 +26,10 @@ export const createSignSchema = (t: (k: string) => string) =>
     .object({
       name: z
         .string({
-          required_error: t('signUp.schema.name.required'),
+          required_error: t('pages.signUp.schema.name.required'),
         })
         .min(6, {
-          message: t('signUp.schema.name.min'),
+          message: t('pages.signUp.schema.name.min'),
         })
         .transform((name, context) => {
           const nameRefined = name.trim()
@@ -39,7 +39,7 @@ export const createSignSchema = (t: (k: string) => string) =>
               minimum: 6,
               type: 'string',
               inclusive: true,
-              message: t('signUp.schema.name.min'),
+              message: t('pages.signUp.schema.name.min'),
             })
 
             return z.NEVER
@@ -50,18 +50,18 @@ export const createSignSchema = (t: (k: string) => string) =>
 
       email: z
         .string({
-          required_error: t('signUp.schema.email.required'),
+          required_error: t('pages.signUp.schema.email.required'),
         })
         .email({
-          message: t('signUp.schema.email.format'),
+          message: t('pages.signUp.schema.email.format'),
         }),
 
       password: z
         .string({
-          required_error: t('signUp.schema.password.required'),
+          required_error: t('pages.signUp.schema.password.required'),
         })
         .min(8, {
-          message: t('signUp.schema.password.min'),
+          message: t('pages.signUp.schema.password.min'),
         })
         .transform((password, context) => {
           const passwordRefined = password.trim()
@@ -71,7 +71,7 @@ export const createSignSchema = (t: (k: string) => string) =>
               minimum: 6,
               type: 'string',
               inclusive: true,
-              message: t('signUp.schema.password.min'),
+              message: t('pages.signUp.schema.password.min'),
             })
 
             return z.NEVER
@@ -80,11 +80,11 @@ export const createSignSchema = (t: (k: string) => string) =>
           return passwordRefined
         }),
       confirmPassword: z.string({
-        required_error: t('signUp.schema.confirmationPassword.required'),
+        required_error: t('pages.signUp.schema.confirmationPassword.required'),
       }),
     })
     .refine(({ confirmPassword, password }) => password === confirmPassword, {
-      message: t('signUp.schema.password.match'),
+      message: t('pages.signUp.schema.password.match'),
       path: ['password'],
     })
 
@@ -109,15 +109,15 @@ export function SignUpForm() {
     name,
     password,
   }: z.infer<typeof schema>) {
-    const [, error] = await execute({
+    const [result] = await execute({
       email,
       password,
       name,
     })
 
-    if (error) {
+    if (!result?.success) {
       toast.error(tMessage('toasts.pages.signUp.failed.title'), {
-        description: error.message,
+        description: result?.message,
       })
 
       return
