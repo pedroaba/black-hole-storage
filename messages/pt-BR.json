@@ -166,7 +166,16 @@
         }
       },
       "account": {
-        "title": "Conta"
+        "title": "Conta",
+        "cards": {
+          "exclude": {
+            "title": "Conta Black Hole",
+            "description": "Ao deletar sua conta, todos os seus dados serão permanentemente removidos, como se fossem sugados por um buraco negro. Isso inclui arquivos, informações pessoais e configurações, sem possibilidade de recuperação. Se você deseja prosseguir com a exclusão, toque abaixo para confirmar e deixar este universo.",
+            "submit": {
+              "text": "Deletar Conta"
+            }
+          }
+        }
       }
     }
   },

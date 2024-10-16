@@ -166,7 +166,16 @@
         }
       },
       "account": {
-        "title": "Account"
+        "title": "Account",
+        "cards": {
+          "exclude": {
+            "title": "Black Hole Account",
+            "description": "When you delete your account, all of your data will be permanently removed, as if it were sucked into a black hole. This includes files, personal information and settings that cannot be recovered. If you wish to proceed with the deletion, tap below to confirm and leave this universe.",
+            "submit": {
+              "text": "Delete Account"
+            }
+          }
+        }
       }
     }
   },

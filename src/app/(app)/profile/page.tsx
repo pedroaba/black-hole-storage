@@ -130,22 +130,17 @@ export default async function Profile() {
               <CardContent className="p-6">
                 <div className="mb-4 flex justify-between">
                   <CardHeader className="p-0 text-lg">
-                    Conta Black Hole
+                    {translations('tabs.account.cards.exclude.title')}
                   </CardHeader>
                 </div>
 
                 <CardDescription>
-                  Ao deletar sua conta, todos os seus dados serão
-                  permanentemente removidos, como se fossem sugados por um
-                  buraco negro. Isso inclui arquivos, informações pessoais e
-                  configurações, sem possibilidade de recuperação. Se você
-                  deseja prosseguir com a exclusão, toque abaixo para confirmar
-                  e deixar este universo.
+                  {translations('tabs.account.cards.exclude.description')}
                 </CardDescription>
 
                 <div className="flex w-full items-center justify-end">
                   <Button variant="destructive" className="mt-4">
-                    Deletar Conta
+                    {translations('tabs.account.cards.exclude.submit.text')}
                   </Button>
                 </div>
               </CardContent>
