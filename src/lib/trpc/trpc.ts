@@ -10,6 +10,8 @@ type TRPCContext = {
 const t = initTRPC.context<TRPCContext>().create({
   transformer: SuperJSON,
   errorFormatter({ shape, error }) {
+    console.log(shape, error)
+
     return {
       ...shape,
       data: {
@@ -36,7 +38,7 @@ export const protectedProcedure = publicProcedure.use(({ ctx, next }) => {
 
   return next({
     ctx: {
-      session: ctx.session,
+      session: ctx?.session,
     },
   })
 })

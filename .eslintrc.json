@@ -5,7 +5,8 @@
     "@rocketseat/eslint-config/next"
   ],
   "plugins": [
-    "simple-import-sort"
+    "simple-import-sort",
+    "neverthrow"
   ],
   "rules": {
     "simple-import-sort/imports": "error",

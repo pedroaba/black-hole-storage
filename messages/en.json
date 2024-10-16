@@ -216,7 +216,7 @@
       "title": "Embark on the system",
       "fields": {
         "name": {
-          "label": "name",
+          "label": "Name",
           "placeholder": "Ex: John Doe"
         },
         "email": {
