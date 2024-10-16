@@ -1,6 +1,8 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useTranslations } from 'next-intl'
+import { useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
@@ -18,26 +20,33 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 
-export const signSchema = z.object({
-  email: z
-    .string({
-      required_error: 'É necessário passar o seu email.',
-    })
-    .email({
-      message: 'Entre com um email válido.',
+export const createSignSchema = (t: (k: string) => string) =>
+  z.object({
+    email: z
+      .string({
+        required_error: t('pages.signIn.schema.email.required'),
+      })
+      .email({
+        message: t('pages.signIn.schema.email.format'),
+      }),
+
+    password: z.string({
+      required_error: t('pages.signIn.schema.password.required'),
     }),
+  })
 
-  password: z.string({
-    required_error: 'A senha não pode ser vazia',
-  }),
-})
-
-export type SignInSchema = z.infer<typeof signSchema>
+// export type SignInSchema = z.infer<typeof signSchema>
 
 export function SignInForm() {
+  const t = useTranslations('SignIn')
+  const tValidation = useTranslations('validation')
+  const tMessage = useTranslations('messages')
+
   const { execute, isPending } = useServerAction(signInWithCredentialsAction)
-  const form = useForm<SignInSchema>({
-    resolver: zodResolver(signSchema),
+
+  const schema = useMemo(() => createSignSchema(tValidation), [tValidation])
+  const form = useForm<z.infer<typeof schema>>({
+    resolver: zodResolver(schema),
     disabled: isPending,
   })
 
@@ -52,29 +61,29 @@ export function SignInForm() {
 
     form.setError('email', {
       type: 'required',
-      message: 'E-mail ou senha incorretos.',
+      message: tValidation('pages.signIn.invalidCredentials'),
     })
 
     form.setError('password', {
       type: 'value',
-      message: 'E-mail ou senha incorretos.',
+      message: tValidation('pages.signIn.invalidCredentials'),
     })
   }
 
-  async function handleSignIn(data: SignInSchema) {
+  async function handleSignIn(data: z.infer<typeof schema>) {
     const [, error] = await execute(data)
     if (error) {
       showInvalidCredentialError()
 
-      toast.error('Credenciais inválidas', {
-        description: 'E-mail ou senha inválidos',
+      toast.error(tMessage('toasts.pages.signIn.failed.title'), {
+        description: tValidation('pages.signIn.invalidCredentials'),
       })
 
       return
     }
 
-    toast.success('Embarque realizado', {
-      description: 'Bem-vindo à espaçonave, e vamos rumo ao infinito',
+    toast.success(tMessage('toasts.pages.signIn.success.title'), {
+      description: tMessage('toasts.pages.signIn.success.message'),
     })
   }
 
@@ -89,9 +98,12 @@ export function SignInForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>E-mail *</FormLabel>
+              <FormLabel>{t('form.fields.email.label')} *</FormLabel>
               <FormControl>
-                <Input placeholder="Ex: johndoe@email.com" {...field} />
+                <Input
+                  placeholder={t('form.fields.email.placeholder')}
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -103,7 +115,7 @@ export function SignInForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Senha *</FormLabel>
+              <FormLabel>{t('form.fields.password.label')} *</FormLabel>
               <FormControl>
                 <Input placeholder="●●●●●●●●●●●●" type="password" {...field} />
               </FormControl>
@@ -114,7 +126,7 @@ export function SignInForm() {
 
         <div className="pt-6">
           <Button className="w-full" variant="secondary" disabled={isPending}>
-            Embarcar
+            {t('form.submit.text')}
           </Button>
         </div>
       </form>

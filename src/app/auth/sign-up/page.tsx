@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { getTranslations } from 'next-intl/server'
 
 import { SignUpForm } from './sign-up-form'
 
@@ -7,64 +8,59 @@ export const metadata: Metadata = {
   title: 'Sign Up',
 }
 
-export default function SignUp() {
+export default async function SignUp() {
+  const t = await getTranslations('SignUp')
+
   return (
-    <div className="h-full w-full grid grid-cols-3">
-      <div className="col-span-2 pt-40 pl-32 space-y-10">
-        <h1 className="text-3xl font-extrabold text-zinc-200">
-          Explore Novos Horizontes
-        </h1>
-        <p className="text-lg text-zinc-100 w-5/6 font-semibold">
-          Desbrave o desconhecido e expanda suas possibilidades com o Black Hole
-          Storage. Ao criar sua conta, você abre as portas para um universo de
-          armazenamento seguro e ilimitado, onde seus arquivos estão protegidos
-          nas profundezas do cosmos digital. Junte-se a nós e comece sua jornada
-          no espaço infinito de segurança e acessibilidade. Está pronto para
-          entrar em órbita?
+    <div className="grid h-full w-full grid-cols-3">
+      <div className="col-span-2 space-y-10 pl-32 pt-40">
+        <h1 className="text-3xl font-extrabold text-zinc-200">{t('title')}</h1>
+        <p className="w-5/6 text-lg font-semibold text-zinc-100">
+          {t('description')}
         </p>
       </div>
-      <div className="w-full h-full bg-zinc-50 dark:bg-zinc-900">
-        <div className="pt-6 pr-8 text-right">
+      <div className="h-full w-full bg-zinc-50 dark:bg-zinc-900">
+        <div className="pr-8 pt-6 text-right">
           <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">
-            Já tenho uma conta?
+            {t('form.signWithAccount.text')}
           </span>{' '}
           <Link
             href="/auth/sign-in"
-            className="text-xs font-semibold text-blue-800 dark:text-blue-400 underline"
+            className="text-xs font-semibold text-blue-800 underline dark:text-blue-400"
           >
-            Embarcar
+            {t('form.signWithAccount.link')}
           </Link>
         </div>
 
-        <div className="flex px-8 flex-col my-16">
-          <h1 className="text-2xl font-semibold text-zinc-800 dark:text-zinc-100 mb-10">
-            Embarcar no sistema
+        <div className="my-16 flex flex-col px-8">
+          <h1 className="mb-10 text-2xl font-semibold text-zinc-800 dark:text-zinc-100">
+            {t('form.title')}
           </h1>
 
           <SignUpForm />
         </div>
 
-        <div className="px-8 rounded-full relative flex items-center my-4">
-          <div className="h-px bg-zinc-400 dark:bg-zinc-500 w-full" />
+        <div className="relative my-4 flex items-center rounded-full px-8">
+          <div className="h-px w-full bg-zinc-400 dark:bg-zinc-500" />
 
-          <span className="text-sm text-zinc-400 dark:text-zinc-500 absolute -top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-zinc-50 dark:bg-zinc-900 z-50 px-4">
-            ou
+          <span className="absolute -top-1/2 left-1/2 z-50 -translate-x-1/2 -translate-y-1/2 bg-zinc-50 px-4 text-sm text-zinc-400 dark:bg-zinc-900 dark:text-zinc-500">
+            {t('form.separator')}
           </span>
         </div>
 
-        <p className="text-sm text-zinc-800 px-8 text-center my-8 mb-5 dark:text-zinc-200">
-          Em breve você poderá embarcar no sistema através da sua conta social.
+        <p className="my-8 mb-5 px-8 text-center text-sm text-zinc-800 dark:text-zinc-200">
+          {t('form.comingSoon')}
         </p>
 
         <div className="px-8">
           <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200">
-            Já tenho uma conta?
+            {t('form.signWithAccount.text')}
           </span>{' '}
           <Link
             href="/auth/sign-in"
-            className="text-xs font-semibold text-blue-800 dark:text-blue-400 underline"
+            className="text-xs font-semibold text-blue-800 underline dark:text-blue-400"
           >
-            Embarcar
+            {t('form.signWithAccount.link')}
           </Link>
         </div>
       </div>

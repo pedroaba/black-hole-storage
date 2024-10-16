@@ -1,0 +1,233 @@
+{
+  "navbar": {
+    "profile": "Perfil",
+    "theme": "Tema",
+    "support": "Suporte",
+    "logout": "Sair",
+    "signIn": "Embarcar"
+  },
+  "theme": {
+    "default": "Tema",
+    "toggle": "Trocar Tema",
+    "dark": "Escuro",
+    "light": "Claro",
+    "system": "Sistema"
+  },
+  "language": {
+    "trigger": "Idioma",
+    "en": "Inglês",
+    "pt-BR": "Português"
+  },
+  "validation": {
+    "pages": {
+      "profile": {
+        "changePasswordSchema": {
+          "currentPassword": {
+            "required": "Digite uma senha válida.",
+            "min": "Você precisa inserir a senha atual para trocar sua senha"
+          },
+          "newPassword": {
+            "required": "Digite uma senha válida.",
+            "min": "Você precisa inserir a senha nova para trocar sua senha",
+            "match": "A nova senha não está igual a confirmação de senha"
+          },
+          "confirmPassword": {
+            "required": "Digite uma senha válida.",
+            "min": "Você precisa inserir a senha nova para confirmar a senha"
+          }
+        }
+      },
+      "signIn": {
+        "schema": {
+          "email": {
+            "required": "E-mail é obrigatório.",
+            "format": "Insira um email válido."
+          },
+          "password": {
+            "required": "A senha é obrigatória."
+          }
+        },
+        "invalidCredentials": "E-mail ou senha inválidos"
+      },
+      "signUp": {
+        "schema": {
+          "name": {
+            "required": "O nome é obrigatório",
+            "min": "Você precisa colocar um nome com no mínimo 6 caracteres"
+          },
+          "email": {
+            "required":"O email é obrigatório",
+            "format":"Insira um email válido."
+          },
+          "password": {
+            "required":"A senha é obrigatória.",
+            "min": "A senha precisa ter no mínimo 8 caracteres",
+            "match": "A senha não é igual a confirmação"
+          },
+          "confirmationPassword": {
+            "required": "Entre com a confirmação de senha"
+          }
+        }
+      }
+    }
+  },
+  "messages": {
+    "toasts": {
+      "any": {
+        "error": "Ocorreu algum erro, tente novamente mais tarde."
+      },
+      "pages": {
+        "profile": {
+          "changePassword": {
+            "success": "A senha foi alterada."
+          }
+        },
+        "signIn": {
+          "success": {
+            "title": "Embarque realizado com sucesso",
+            "message": "Bem-vindo à espaçonave, e vamos rumo ao infinito"
+          },
+          "failed": {
+            "title": "Credenciais inválidas."
+          }
+        },
+        "signUp": {
+          "success": {
+            "title": "Usuário criado com sucesso"
+          },
+          "failed": {
+            "title": "Erro ao tentar cria usuário"
+          }
+        }
+      }
+    },
+    "routes": {
+      "profile": {
+        "changePassword": {
+          "doesNotMatchWithCurrentPassword": "A senha atual não bate com a senha provida.",
+          "success": "A senha foi alterada com sucesso"
+        }
+      }, 
+      "generics": {
+        "userDoesNotExists": "Usuário não existe!"
+      }
+    }
+  },
+  "Profile": {
+    "title": "Perfil",
+    "tabs": {
+      "info": {
+        "title": "Informações pessoais",
+        "cards": {
+          "avatar": {
+            "title": "Foto de perfil",
+            "description": "Por favor, utilize uma imagem de perfil com tamanho máximo de 10 MB.",
+            "changeButton": {
+              "text": "Alterar foto"
+            }
+          },
+          "info": {
+            "title": "Informações",
+            "form": {
+              "fields": {
+                "name": {
+                  "label": "Nome",
+                  "placeholder": "Nome do usuário"
+                },
+                "email": {
+                  "label": "E-mail",
+                  "placeholder": "E-mail do usuário"
+                }
+              }
+            }
+          },
+          "password": {
+            "title": "Senha",
+            "form": {
+              "fields": {
+                "oldPassword": {
+                  "label": "Senha Antiga",
+                  "placeholder": "senha antiga"
+                },
+                "newPassword": {
+                  "label": "Nova Senha",
+                  "placeholder": "nova senha"
+                },
+                "confirmationPassword": {
+                  "label": "Confirme sua senha",
+                  "placeholder": "confirme sua senha"
+                }
+              },
+              "submit": {
+                "text": "Salvar"
+              }
+            }
+          }
+        }
+      },
+      "account": {
+        "title": "Conta"
+      }
+    }
+  },
+  "SignIn": {
+    "title": "Acesse o Universo dos seus Arquivos",
+    "description": "Mergulhe no infinito com nossa solução estelar de armazenamento em nuvem. Com o Black Hole Storage, você entra em uma dimensão de segurança impenetrável e acessibilidade ilimitada. Explore, gerencie e proteja seus arquivos no vasto universo digital. Prepare-se para uma experiência cósmica onde seus dados são tão vastos quanto o espaço.",
+    "form": {
+      "createAccount": {
+        "text": "Não tenho uma conta ainda?",
+        "link": "Cadastrar"
+      },
+      "title": "Embarque no sistema",
+      "fields": {
+        "email": {
+          "label": "E-mail",
+          "placeholder": "Ex: fulano@email.com"
+        },
+        "password": {
+          "label": "Senha",
+          "placeholder": ""
+        }
+      },
+      "submit": {
+        "text": "Embarcar"
+      },
+      "separator": "ou",
+      "comingSoon": "Em breve você poderá embarcar no sistema através da sua conta social."
+    }
+  },
+  "SignUp": {
+    "title": "Explore Novos Horizontes",
+    "description": "Desbrave o desconhecido e expanda suas possibilidades com o Black Hole Storage. Ao criar sua conta, você abre as portas para um universo de armazenamento seguro e ilimitado, onde seus arquivos estão protegidos nas profundezas do cosmos digital. Junte-se a nós e comece sua jornada no espaço infinito de segurança e acessibilidade. Está pronto para entrar em órbita?",
+    "form": {
+      "signWithAccount": {
+        "text": "Já tenho uma conta?",
+        "link": "Embarcar"
+      },
+      "title": "Embarcar no sistema",
+      "fields": {
+        "name": {
+          "label": "Nome",
+          "placeholder": "Ex: Fulano"
+        },
+        "email": {
+          "label": "E-mail",
+          "placeholder": "Ex: fulano@email.com"
+        },
+        "password": {
+          "label": "Senha",
+          "placeholder": ""
+        },
+        "confirmPassword": {
+          "label": "Confirmar Senha",
+          "placeholder": ""
+        }
+      },
+      "submit": {
+        "text": "Embarcar"
+      },
+      "separator": "ou",
+      "comingSoon": "Em breve você poderá embarcar no sistema através da sua conta social."
+    }
+  }
+}

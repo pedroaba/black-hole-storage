@@ -3,6 +3,8 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { RotateCw } from 'lucide-react'
+import { useTranslations } from 'next-intl'
+import { useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
@@ -20,61 +22,87 @@ import {
 import { Input } from '@/components/ui/input'
 import { trpc } from '@/lib/trpc/react'
 
-const changePasswordSchema = z
-  .object({
-    current_password: z
-      .string({
-        required_error: 'Type a valid password.',
-      })
-      .min(1, {
-        message: 'Você precisa inserir a senha atual para trocar sua senha',
-      }),
-    new_password: z
-      .string({
-        required_error: 'Type a valid password.',
-      })
-      .min(1, {
-        message: 'Você precisa inserir a senha atual para trocar sua senha',
-      }),
-    password_confirmation: z
-      .string({
-        required_error: 'Type a valid password.',
-      })
-      .min(1, {
-        message: 'Você precisa inserir a senha atual para trocar sua senha',
-      }),
-  })
-  .refine(
-    ({ new_password, password_confirmation }) => {
-      return new_password === password_confirmation
-    },
-    {
-      message: 'A nova senha não está igual a confirmação de senha',
-      path: ['password_confirmation'],
-    },
-  )
+const createChangePasswordSchema = (translations: (key: string) => string) =>
+  z
+    .object({
+      current_password: z
+        .string({
+          required_error: translations(
+            'pages.profile.changePasswordSchema.currentPassword.required',
+          ),
+        })
+        .min(1, {
+          message: translations(
+            'pages.profile.changePasswordSchema.currentPassword.min',
+          ),
+        }),
+      new_password: z
+        .string({
+          required_error: translations(
+            'pages.profile.changePasswordSchema.newPassword.required',
+          ),
+        })
+        .min(1, {
+          message: translations(
+            'pages.profile.changePasswordSchema.newPassword.min',
+          ),
+        }),
+      password_confirmation: z
+        .string({
+          required_error: translations(
+            'pages.profile.changePasswordSchema.confirmPassword.required',
+          ),
+        })
+        .min(1, {
+          message: translations(
+            'pages.profile.changePasswordSchema.confirmPassword.min',
+          ),
+        }),
+    })
+    .refine(
+      ({ new_password, password_confirmation }) => {
+        return new_password === password_confirmation
+      },
+      {
+        message: translations(
+          'pages.profile.changePasswordSchema.newPassword.match',
+        ),
+        path: ['password_confirmation'],
+      },
+    )
 
-type ChangePasswordForm = z.infer<typeof changePasswordSchema>
+// type ChangePasswordForm = z.infer<typeof changePasswordSchema>
 
 export function ChangePasswordForm() {
+  const translations = useTranslations('Profile')
+  const messageTranslations = useTranslations('messages')
+  const validationTranslations = useTranslations('validation')
   const { mutateAsync, isPending } = trpc.changePassword.useMutation()
-  const form = useForm<ChangePasswordForm>({
-    resolver: zodResolver(changePasswordSchema),
+
+  const schema = useMemo(
+    () => createChangePasswordSchema(validationTranslations),
+    [validationTranslations],
+  )
+  const form = useForm({
+    resolver: zodResolver(schema),
   })
 
-  async function handleChangePassword(data: ChangePasswordForm) {
+  async function handleChangePassword(data: z.infer<typeof schema>) {
     const { success, message } = await mutateAsync({
       current_password: data.current_password,
       new_password: data.new_password,
     })
 
     if (success) {
-      return toast.success('Password has been changed', {
-        description: message,
-      })
+      return toast.success(
+        messageTranslations('toasts.pages.profile.changePassword.success'),
+        {
+          description: message,
+        },
+      )
     }
 
-    toast.error('Any error was occurred, please try again later.', {
+    toast.error(messageTranslations('toasts.any.error'), {
       description: message,
     })
   }
@@ -83,7 +111,9 @@ export function ChangePasswordForm() {
     <Card>
       <CardContent className="mb-4 p-6">
         <div className="mb-4 flex items-center justify-between">
-          <CardHeader className="p-0 text-lg">Senha</CardHeader>
+          <CardHeader className="p-0 text-lg">
+            {translations('tabs.info.cards.password.title')}
+          </CardHeader>
         </div>
 
         <Form {...form}>
@@ -94,10 +124,16 @@ export function ChangePasswordForm() {
                 name="current_password"
                 render={({ field }) => (
                   <FormItem className="space-y-1">
-                    <FormLabel>Senha antiga</FormLabel>
+                    <FormLabel>
+                      {translations(
+                        'tabs.info.cards.password.form.fields.oldPassword.label',
+                      )}
+                    </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="senha antiga"
+                        placeholder={translations(
+                          'tabs.info.cards.password.form.fields.oldPassword.placeholder',
+                        )}
                         type="password"
                         {...field}
                       />
@@ -112,10 +148,16 @@ export function ChangePasswordForm() {
                 name="new_password"
                 render={({ field }) => (
                   <FormItem className="space-y-1">
-                    <FormLabel>Nova Senha</FormLabel>
+                    <FormLabel>
+                      {translations(
+                        'tabs.info.cards.password.form.fields.newPassword.label',
+                      )}
+                    </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="nova senha"
+                        placeholder={translations(
+                          'tabs.info.cards.password.form.fields.newPassword.placeholder',
+                        )}
                         type="password"
                         {...field}
                       />
@@ -130,10 +172,16 @@ export function ChangePasswordForm() {
                 name="password_confirmation"
                 render={({ field }) => (
                   <FormItem className="space-y-1">
-                    <FormLabel>Confirme sua senha</FormLabel>
+                    <FormLabel>
+                      {translations(
+                        'tabs.info.cards.password.form.fields.confirmationPassword.label',
+                      )}
+                    </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="confirme sua nova senha"
+                        placeholder={translations(
+                          'tabs.info.cards.password.form.fields.confirmationPassword.placeholder',
+                        )}
                         type="password"
                         {...field}
                       />
@@ -147,6 +195,7 @@ export function ChangePasswordForm() {
             <div className="mt-4 flex w-full items-center justify-end">
               <Button
                 type="button"
+                // @ts-expect-error [ignore]
                 onClick={form.handleSubmit(handleChangePassword)}
                 disabled={isPending}
                 variant="secondary"
@@ -154,7 +203,7 @@ export function ChangePasswordForm() {
                 {isPending ? (
                   <RotateCw className="size-4 animate-spin" />
                 ) : (
-                  'Salvar'
+                  translations('tabs.info.cards.password.form.submit.text')
                 )}
               </Button>
             </div>

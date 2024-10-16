@@ -6,7 +6,7 @@ type AppLayoutProps = {
 
 export default function AppLayout({ children }: AppLayoutProps) {
   return (
-    <main className="h-[calc(100vh-56px)] w-screen dark:bg-zinc-900/5 bg-zinc-50">
+    <main className="h-[calc(100vh-56px)] bg-zinc-50 dark:bg-zinc-900/5">
       {children}
     </main>
   )
