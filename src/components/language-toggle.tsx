@@ -31,8 +31,8 @@ export function LanguageToggle() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
-        <Button variant="ghost">
+      <DropdownMenuTrigger asChild>
+        <Button data-testId="language_button" variant="ghost">
           <Languages className="mr-2 size-4 text-foreground" />
           {translations('trigger')}
         </Button>
@@ -41,10 +41,16 @@ export function LanguageToggle() {
         <DropdownMenuGroup>
           {/* <DropdownMenuLabel>Languages</DropdownMenuLabel> */}
 
-          <DropdownMenuItem onClick={() => handleSetLanguageOnCookies('en')}>
+          <DropdownMenuItem
+            data-testId="lan_select_en"
+            onClick={() => handleSetLanguageOnCookies('en')}
+          >
             {translations('en')}
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => handleSetLanguageOnCookies('pt-BR')}>
+          <DropdownMenuItem
+            data-testId="lan_select_pot-BR"
+            onClick={() => handleSetLanguageOnCookies('pt-BR')}
+          >
             {translations('pt-BR')}
           </DropdownMenuItem>
         </DropdownMenuGroup>

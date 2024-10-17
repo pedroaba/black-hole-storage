@@ -101,6 +101,7 @@ export function SignInForm() {
               <FormLabel>{t('form.fields.email.label')} *</FormLabel>
               <FormControl>
                 <Input
+                  data-testId="email_field"
                   placeholder={t('form.fields.email.placeholder')}
                   {...field}
                 />
@@ -117,7 +118,12 @@ export function SignInForm() {
             <FormItem>
               <FormLabel>{t('form.fields.password.label')} *</FormLabel>
               <FormControl>
-                <Input placeholder="●●●●●●●●●●●●" type="password" {...field} />
+                <Input
+                  data-testId="password_field"
+                  placeholder="●●●●●●●●●●●●"
+                  type="password"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -125,7 +131,12 @@ export function SignInForm() {
         />
 
         <div className="pt-6">
-          <Button className="w-full" variant="secondary" disabled={isPending}>
+          <Button
+            data-testId="login_submit_button"
+            className="w-full"
+            variant="secondary"
+            disabled={isPending}
+          >
             {t('form.submit.text')}
           </Button>
         </div>
