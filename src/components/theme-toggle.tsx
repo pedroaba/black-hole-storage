@@ -21,14 +21,21 @@ export function ThemeToggle() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon">
-          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+        <Button data-testId="theme_mode_button" variant="ghost" size="icon">
+          <Sun
+            data-testId="light_theme_icon"
+            className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
+          />
+          <Moon
+            data-testId="dark_theme_icon"
+            className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
+          />
           <span className="sr-only">{translations('toggle')}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem
+          data-testId="light_mode_button"
           className={cn(
             'mb-1',
             theme === 'light' && 'bg-accent text-accent-foreground',
@@ -38,6 +45,7 @@ export function ThemeToggle() {
           {translations('light')}
         </DropdownMenuItem>
         <DropdownMenuItem
+          data-testId="dark_mode_button"
           className={cn(
             'mb-1',
             theme === 'dark' && 'bg-accent text-accent-foreground',
