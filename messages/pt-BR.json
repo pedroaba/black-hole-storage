@@ -238,5 +238,20 @@
       "separator": "ou",
       "comingSoon": "Em breve você poderá embarcar no sistema através da sua conta social."
     }
+  },
+  "Home": {
+    "emptyFileList": {
+      "title": "Nenhum arquivo encontrado",
+      "description": "Parece que você ainda não tem nenhum arquivo armazenado. Comece fazendo upload de seus arquivos para o Black Hole Storage.",
+      "uploadButton": {
+        "text": "Fazer upload de arquivos"
+      }
+    },
+    "toolbar": {
+      "searchInput": {
+        "placeholder": "busque pelo nome do arquivo"
+      },
+      "uploadButton": "Upload"
+    }
   }
 }

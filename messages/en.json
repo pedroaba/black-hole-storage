@@ -238,5 +238,20 @@
       "separator": "or",
       "comingSoon": "You will soon be able to join the system through your social account."
     }
+  },
+  "Home": {
+    "emptyFileList": {
+      "title": "No files found",
+      "description": "It looks like you don't have any files stored yet. Get started uploading your files to Black Hole Storage.",
+      "uploadButton": {
+        "text": "Upload files"
+      }
+    },
+    "toolbar": {
+      "searchInput": {
+        "placeholder": "search by filename"
+      },
+      "uploadButton": "Upload"
+    }
   }
 }
