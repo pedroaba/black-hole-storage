@@ -141,11 +141,12 @@ export function SignUpForm() {
               <FormLabel>{t('form.fields.name.label')} *</FormLabel>
               <FormControl>
                 <Input
+                  data-testId="name_field"
                   placeholder={t('form.fields.name.placeholder')}
                   {...field}
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage data-TestId="name_message" />
             </FormItem>
           )}
         />
@@ -158,12 +159,13 @@ export function SignUpForm() {
               <FormLabel>{t('form.fields.email.label')} *</FormLabel>
               <FormControl>
                 <Input
+                  data-testId="email_field"
                   placeholder={t('form.fields.email.placeholder')}
                   type="email"
                   {...field}
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage data-TestId="email_message" />
             </FormItem>
           )}
         />
@@ -175,9 +177,14 @@ export function SignUpForm() {
             <FormItem>
               <FormLabel>{t('form.fields.password.label')} *</FormLabel>
               <FormControl>
-                <Input placeholder="●●●●●●●●●●●●" type="password" {...field} />
+                <Input
+                  data-testId="password_field"
+                  placeholder="●●●●●●●●●●●●"
+                  type="password"
+                  {...field}
+                />
               </FormControl>
-              <FormMessage />
+              <FormMessage data-TestId="password_message" />
             </FormItem>
           )}
         />
@@ -189,15 +196,25 @@ export function SignUpForm() {
             <FormItem>
               <FormLabel>{t('form.fields.confirmPassword.label')} *</FormLabel>
               <FormControl>
-                <Input placeholder="●●●●●●●●●●●●" type="password" {...field} />
+                <Input
+                  data-testId="confirm_password_field"
+                  placeholder="●●●●●●●●●●●●"
+                  type="password"
+                  {...field}
+                />
               </FormControl>
-              <FormMessage />
+              <FormMessage data-TestId="confirm_password_message" />
             </FormItem>
           )}
         />
 
         <div className="pt-6">
-          <Button className="w-full" variant="secondary" disabled={isPending}>
+          <Button
+            data-testId="confirm_sign_up_button"
+            className="w-full"
+            variant="secondary"
+            disabled={isPending}
+          >
             {isPending ? (
               <LoaderCircle className="size-4 animate-spin text-zinc-800 dark:text-zinc-100" />
             ) : (
