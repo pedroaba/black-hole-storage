@@ -26,7 +26,11 @@ export async function Header() {
         {!session?.user && (
           <>
             <ThemeToggle />
-            <Link href="/auth/sign-in" className="mr-2 hover:underline">
+            <Link
+              data-testId="sign_in_header_button"
+              href="/auth/sign-in"
+              className="mr-2 hover:underline"
+            >
               {t('signIn')}
             </Link>
           </>

@@ -25,6 +25,7 @@ export default async function Login() {
             {t('form.createAccount.text')}
           </span>{' '}
           <Link
+            data-testID="sign_up_button_up"
             href="/auth/sign-up"
             className="text-xs font-semibold text-blue-800 underline dark:text-blue-400"
           >
@@ -57,6 +58,7 @@ export default async function Login() {
             {t('form.createAccount.text')}
           </span>{' '}
           <Link
+            data-testID="sign_up_button_down"
             href="/auth/sign-up"
             className="text-xs font-semibold text-blue-800 underline dark:text-blue-400"
           >
