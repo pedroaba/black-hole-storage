@@ -131,6 +131,7 @@ export function ChangePasswordForm() {
                     </FormLabel>
                     <FormControl>
                       <Input
+                        data-testId="current_password_field"
                         placeholder={translations(
                           'tabs.info.cards.password.form.fields.oldPassword.placeholder',
                         )}
@@ -138,7 +139,7 @@ export function ChangePasswordForm() {
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage data-testId="current_password_message" />
                   </FormItem>
                 )}
               />
@@ -155,6 +156,7 @@ export function ChangePasswordForm() {
                     </FormLabel>
                     <FormControl>
                       <Input
+                        data-testId="new_password_field"
                         placeholder={translations(
                           'tabs.info.cards.password.form.fields.newPassword.placeholder',
                         )}
@@ -162,7 +164,7 @@ export function ChangePasswordForm() {
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage data-testId="new_password_message" />
                   </FormItem>
                 )}
               />
@@ -179,6 +181,7 @@ export function ChangePasswordForm() {
                     </FormLabel>
                     <FormControl>
                       <Input
+                        data-testId="new_password_confirmation_field"
                         placeholder={translations(
                           'tabs.info.cards.password.form.fields.confirmationPassword.placeholder',
                         )}
@@ -186,7 +189,7 @@ export function ChangePasswordForm() {
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage data-testId="new_password_confirmation_message" />
                   </FormItem>
                 )}
               />
@@ -194,6 +197,7 @@ export function ChangePasswordForm() {
 
             <div className="mt-4 flex w-full items-center justify-end">
               <Button
+                data-testId="change_password_submit_button"
                 type="button"
                 // @ts-expect-error [ignore]
                 onClick={form.handleSubmit(handleChangePassword)}

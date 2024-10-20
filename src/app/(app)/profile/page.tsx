@@ -37,6 +37,7 @@ export default async function Profile() {
         >
           <TabsList className="grid w-full gap-2 bg-transparent text-sm dark:bg-transparent">
             <TabsTrigger
+              data-testId="personal_information_tab"
               value="personal-information"
               className="w-full px-10 py-2 font-semibold text-zinc-700 hover:bg-zinc-300 dark:text-zinc-200 dark:hover:bg-zinc-900"
             >
@@ -44,6 +45,7 @@ export default async function Profile() {
             </TabsTrigger>
 
             <TabsTrigger
+              data-testId="account_tab"
               value="account"
               className="px-10 py-2 font-semibold text-zinc-700 hover:bg-zinc-300 dark:text-zinc-200 dark:hover:bg-zinc-900"
             >
@@ -52,6 +54,7 @@ export default async function Profile() {
           </TabsList>
 
           <TabsContent
+            data-testId="personal_information_tab_content"
             value="personal-information"
             className="mt-0 space-y-4 overflow-y-auto"
           >
@@ -125,7 +128,7 @@ export default async function Profile() {
             <ChangePasswordForm />
           </TabsContent>
 
-          <TabsContent value="account">
+          <TabsContent data-testId="account_tab_content" value="account">
             <Card>
               <CardContent className="p-6">
                 <div className="mb-4 flex justify-between">

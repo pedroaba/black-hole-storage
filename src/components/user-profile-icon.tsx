@@ -41,7 +41,7 @@ export async function UserProfileIcon() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="hover:brightness-125">
-        <div className="flex items-center">
+        <div data-testId="user_profile_menu" className="flex items-center">
           <p className="w-32 truncate capitalize">{userName}</p>
           <Avatar className="size-8">
             <AvatarImage src={session?.user?.image ?? '#'} />
@@ -54,7 +54,7 @@ export async function UserProfileIcon() {
       <DropdownMenuPortal>
         <DropdownMenuContent className="w-40">
           <DropdownMenuGroup>
-            <DropdownMenuItem>
+            <DropdownMenuItem data-testId="profile_page_button">
               <Link className="w-full" href="/profile">
                 {translations('profile')}
               </Link>
