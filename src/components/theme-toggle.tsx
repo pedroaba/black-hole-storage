@@ -21,13 +21,13 @@ export function ThemeToggle() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button data-testId="theme_mode_button" variant="ghost" size="icon">
+        <Button data-testid="theme_mode_button" variant="ghost" size="icon">
           <Sun
-            data-testId="light_theme_icon"
+            data-testid="light_theme_icon"
             className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
           />
           <Moon
-            data-testId="dark_theme_icon"
+            data-testid="dark_theme_icon"
             className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
           />
           <span className="sr-only">{translations('toggle')}</span>
@@ -35,20 +35,20 @@ export function ThemeToggle() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem
-          data-testId="light_mode_button"
+          data-testid="light_mode_button"
           className={cn(
             'mb-1',
-            theme === 'light' && 'bg-accent text-accent-foreground',
+            theme === 'light' && 'bg-accent text-accent-foreground'
           )}
           onClick={() => setTheme('light')}
         >
           {translations('light')}
         </DropdownMenuItem>
         <DropdownMenuItem
-          data-testId="dark_mode_button"
+          data-testid="dark_mode_button"
           className={cn(
             'mb-1',
-            theme === 'dark' && 'bg-accent text-accent-foreground',
+            theme === 'dark' && 'bg-accent text-accent-foreground'
           )}
           onClick={() => setTheme('dark')}
         >
@@ -56,7 +56,7 @@ export function ThemeToggle() {
         </DropdownMenuItem>
         <DropdownMenuItem
           className={cn(
-            theme === 'system' && 'bg-accent text-accent-foreground',
+            theme === 'system' && 'bg-accent text-accent-foreground'
           )}
           onClick={() => setTheme('system')}
         >

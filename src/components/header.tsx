@@ -27,7 +27,7 @@ export async function Header() {
           <>
             <ThemeToggle />
             <Link
-              data-testId="sign_in_header_button"
+              data-testid="sign_in_header_button"
               href="/auth/sign-in"
               className="mr-2 hover:underline"
             >

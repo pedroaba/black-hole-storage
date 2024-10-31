@@ -28,34 +28,34 @@ const createChangePasswordSchema = (translations: (key: string) => string) =>
       current_password: z
         .string({
           required_error: translations(
-            'pages.profile.changePasswordSchema.currentPassword.required',
+            'pages.profile.changePasswordSchema.currentPassword.required'
           ),
         })
         .min(1, {
           message: translations(
-            'pages.profile.changePasswordSchema.currentPassword.min',
+            'pages.profile.changePasswordSchema.currentPassword.min'
           ),
         }),
       new_password: z
         .string({
           required_error: translations(
-            'pages.profile.changePasswordSchema.newPassword.required',
+            'pages.profile.changePasswordSchema.newPassword.required'
           ),
         })
         .min(1, {
           message: translations(
-            'pages.profile.changePasswordSchema.newPassword.min',
+            'pages.profile.changePasswordSchema.newPassword.min'
           ),
         }),
       password_confirmation: z
         .string({
           required_error: translations(
-            'pages.profile.changePasswordSchema.confirmPassword.required',
+            'pages.profile.changePasswordSchema.confirmPassword.required'
           ),
         })
         .min(1, {
           message: translations(
-            'pages.profile.changePasswordSchema.confirmPassword.min',
+            'pages.profile.changePasswordSchema.confirmPassword.min'
           ),
         }),
     })
@@ -65,10 +65,10 @@ const createChangePasswordSchema = (translations: (key: string) => string) =>
       },
       {
         message: translations(
-          'pages.profile.changePasswordSchema.newPassword.match',
+          'pages.profile.changePasswordSchema.newPassword.match'
         ),
         path: ['password_confirmation'],
-      },
+      }
     )
 
 // type ChangePasswordForm = z.infer<typeof changePasswordSchema>
@@ -81,7 +81,7 @@ export function ChangePasswordForm() {
 
   const schema = useMemo(
     () => createChangePasswordSchema(validationTranslations),
-    [validationTranslations],
+    [validationTranslations]
   )
   const form = useForm({
     resolver: zodResolver(schema),
@@ -98,7 +98,7 @@ export function ChangePasswordForm() {
         messageTranslations('toasts.pages.profile.changePassword.success'),
         {
           description: message,
-        },
+        }
       )
     }
 
@@ -126,20 +126,20 @@ export function ChangePasswordForm() {
                   <FormItem className="space-y-1">
                     <FormLabel>
                       {translations(
-                        'tabs.info.cards.password.form.fields.oldPassword.label',
+                        'tabs.info.cards.password.form.fields.oldPassword.label'
                       )}
                     </FormLabel>
                     <FormControl>
                       <Input
-                        data-testId="current_password_field"
+                        data-testid="current_password_field"
                         placeholder={translations(
-                          'tabs.info.cards.password.form.fields.oldPassword.placeholder',
+                          'tabs.info.cards.password.form.fields.oldPassword.placeholder'
                         )}
                         type="password"
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage data-testId="current_password_message" />
+                    <FormMessage data-testid="current_password_message" />
                   </FormItem>
                 )}
               />
@@ -151,20 +151,20 @@ export function ChangePasswordForm() {
                   <FormItem className="space-y-1">
                     <FormLabel>
                       {translations(
-                        'tabs.info.cards.password.form.fields.newPassword.label',
+                        'tabs.info.cards.password.form.fields.newPassword.label'
                       )}
                     </FormLabel>
                     <FormControl>
                       <Input
-                        data-testId="new_password_field"
+                        data-testid="new_password_field"
                         placeholder={translations(
-                          'tabs.info.cards.password.form.fields.newPassword.placeholder',
+                          'tabs.info.cards.password.form.fields.newPassword.placeholder'
                         )}
                         type="password"
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage data-testId="new_password_message" />
+                    <FormMessage data-testid="new_password_message" />
                   </FormItem>
                 )}
               />
@@ -176,20 +176,20 @@ export function ChangePasswordForm() {
                   <FormItem className="space-y-1">
                     <FormLabel>
                       {translations(
-                        'tabs.info.cards.password.form.fields.confirmationPassword.label',
+                        'tabs.info.cards.password.form.fields.confirmationPassword.label'
                       )}
                     </FormLabel>
                     <FormControl>
                       <Input
-                        data-testId="new_password_confirmation_field"
+                        data-testid="new_password_confirmation_field"
                         placeholder={translations(
-                          'tabs.info.cards.password.form.fields.confirmationPassword.placeholder',
+                          'tabs.info.cards.password.form.fields.confirmationPassword.placeholder'
                         )}
                         type="password"
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage data-testId="new_password_confirmation_message" />
+                    <FormMessage data-testid="new_password_confirmation_message" />
                   </FormItem>
                 )}
               />
@@ -197,7 +197,7 @@ export function ChangePasswordForm() {
 
             <div className="mt-4 flex w-full items-center justify-end">
               <Button
-                data-testId="change_password_submit_button"
+                data-testid="change_password_submit_button"
                 type="button"
                 // @ts-expect-error [ignore]
                 onClick={form.handleSubmit(handleChangePassword)}

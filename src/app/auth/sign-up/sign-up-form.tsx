@@ -141,12 +141,12 @@ export function SignUpForm() {
               <FormLabel>{t('form.fields.name.label')} *</FormLabel>
               <FormControl>
                 <Input
-                  data-testId="name_field"
+                  data-testid="name_field"
                   placeholder={t('form.fields.name.placeholder')}
                   {...field}
                 />
               </FormControl>
-              <FormMessage data-TestId="name_message" />
+              <FormMessage data-testid="name_message" />
             </FormItem>
           )}
         />
@@ -159,13 +159,13 @@ export function SignUpForm() {
               <FormLabel>{t('form.fields.email.label')} *</FormLabel>
               <FormControl>
                 <Input
-                  data-testId="email_field"
+                  data-testid="email_field"
                   placeholder={t('form.fields.email.placeholder')}
                   type="email"
                   {...field}
                 />
               </FormControl>
-              <FormMessage data-TestId="email_message" />
+              <FormMessage data-testid="email_message" />
             </FormItem>
           )}
         />
@@ -178,13 +178,13 @@ export function SignUpForm() {
               <FormLabel>{t('form.fields.password.label')} *</FormLabel>
               <FormControl>
                 <Input
-                  data-testId="password_field"
+                  data-testid="password_field"
                   placeholder="●●●●●●●●●●●●"
                   type="password"
                   {...field}
                 />
               </FormControl>
-              <FormMessage data-TestId="password_message" />
+              <FormMessage data-testid="password_message" />
             </FormItem>
           )}
         />
@@ -197,20 +197,20 @@ export function SignUpForm() {
               <FormLabel>{t('form.fields.confirmPassword.label')} *</FormLabel>
               <FormControl>
                 <Input
-                  data-testId="confirm_password_field"
+                  data-testid="confirm_password_field"
                   placeholder="●●●●●●●●●●●●"
                   type="password"
                   {...field}
                 />
               </FormControl>
-              <FormMessage data-TestId="confirm_password_message" />
+              <FormMessage data-testid="confirm_password_message" />
             </FormItem>
           )}
         />
 
         <div className="pt-6">
           <Button
-            data-testId="confirm_sign_up_button"
+            data-testid="confirm_sign_up_button"
             className="w-full"
             variant="secondary"
             disabled={isPending}

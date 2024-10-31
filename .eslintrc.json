@@ -4,12 +4,8 @@
     "next/typescript",
     "@rocketseat/eslint-config/next"
   ],
-  "plugins": [
-    "simple-import-sort",
-    "neverthrow"
-  ],
+  "plugins": ["neverthrow"],
   "rules": {
-    "simple-import-sort/imports": "error",
     "no-useless-constructor": "off",
     "camelcase": "off"
   }

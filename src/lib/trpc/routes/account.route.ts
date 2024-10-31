@@ -17,7 +17,6 @@ export const accountRoute = createTRPCRouter({
       }),
     )
     .mutation(async ({ input }) => {
-      console.log(input)
       const { email, name, password } = input
 
       const userOnDb = await db.query.user.findFirst({
